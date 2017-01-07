@@ -1,0 +1,86 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/buttonBorder</item>
+        <item name="android:statusBarColor">@color/colorToolbar</item>
+        <item name="android:textColorTertiary">@color/colorHeader</item>
+        <item name="android:textColorPrimary">@color/gold</item>
+        <item name="colorControlNormal">@color/buttonBorder</item>
+        <item name="android:typeface">serif</item>
+    </style>
+
+    <style name="AppTheme.Fullscreen" parent="AppTheme">
+        <item name="android:statusBarColor">@color/colorStatusBar</item>
+        <item name="android:windowBackground">@drawable/bg</item>
+        <item name="android:windowFullscreen">false</item>
+    </style>
+
+    <style name="AppTheme.Light" parent="AppTheme">
+        <item name="android:textColorTertiary">@color/black</item>
+    </style>
+
+    <style name="AppTheme.Splash" parent="AppTheme">
+        <item name="android:windowBackground">@drawable/splash</item>
+        <item name="android:windowFullscreen">true</item>
+    </style>
+
+    <style name="AppTheme.AppBarLayout" parent="Widget.Design.AppBarLayout">
+        <item name="android:background">@color/colorToolbar</item>
+    </style>
+
+    <style name="AppTheme.TextAppearance">
+
+    </style>
+
+    <style name="Header">
+
+    </style>
+
+    <style name="Divider">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:background">@android:color/darker_gray</item>
+        <item name="android:layout_marginTop">6dp</item>
+        <item name="android:layout_marginBottom">6dp</item>
+    </style>
+
+    <style name="Header.TextAppearance">
+        <item name="android:textColor">@color/colorHeader</item>
+        <item name="android:textSize">32sp</item>
+    </style>
+
+    <!-- Spinner -->
+    <style name="AppTheme.Spinner">
+        <item name="android:spinnerItemStyle">@style/AppTheme.Spinner.SpinnerItem</item>
+    </style>
+
+    <style name="AppTheme.Spinner.SpinnerItem" parent="Widget.AppCompat.TextView.SpinnerItem">
+        <item name="android:textAppearance">@style/AppTheme.Spinner.TextAppearance</item>
+    </style>
+    
+    <style name="AppTheme.Spinner.TextAppearance">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/colorToolbar</item>
+    </style>
+
+    <!-- PROFILE -->
+    <style name="Profile">
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="Profile.Name" parent="Profile">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <!-- TABS -->
+    <style name="AppTheme.TextAppearance.Tab" parent="TextAppearance.Design.Tab">
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textColor">@color/gold</item>
+        <item name="android:typeface">sans</item>
+    </style>
+
+</resources>

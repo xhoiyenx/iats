@@ -1,0 +1,80 @@
+<resources>
+    <string name="app_name">IATS</string>
+    <string name="text_login">Log In</string>
+    <string name="text_register">Get Started</string>
+    <string name="text_signup">Sign Up</string>
+    <string name="text_dont_have_account">Don\'t have account?</string>
+    <string name="text_become_member">BECOME A MEMBER</string>
+    <string name="text_member">I\'m IATS Member</string>
+    <string name="text_agree">I agree to the AD/ART and SNIATS</string>
+    <string name="text_tnc">Terms &amp; Conditions</string>
+    <string name="text_adart">AD/ART</string>
+    <string name="text_sniats">SNIATS</string>
+    <string name="text_open">Open</string>
+    <string name="text_close">Close</string>
+    <string name="text_cart">Cart</string>
+    <string name="text_search">Search</string>
+    <string name="text_featured">Featured</string>
+    <string name="text_material">Material</string>
+    <string name="text_description">Description</string>
+    <string name="text_article">Article</string>
+    <string name="text_color">Color</string>
+    <string name="text_seemore">see more&#8230;</string>
+    <string name="text_library">Library</string>
+    <string name="text_photo">Photo</string>
+    <string name="text_video">Video</string>
+    <string name="text_watermark_on">Watermark ON</string>
+    <string name="text_watermark_off">Watermark OFF</string>
+    <string name="text_change_position">Change Position</string>
+    <string name="text_your_caption">Your caption</string>
+
+    <!-- Form -->
+    <string name="input_username">Username</string>
+    <string name="input_password">Password</string>
+    <string name="input_email">E-mail</string>
+    <string name="input_phone">Mobile</string>
+
+    <!-- Errors -->
+    <string name="error_empty_form">Please complete the form</string>
+
+    <!-- Intro -->
+    <string name="intro_header_a">Connecting</string>
+    <string name="intro_description_a">The best trimmers in Indonesia</string>
+    <string name="intro_header_b">Create.Share.</string>
+    <string name="intro_description_b">Get Inspired. Be Inspiring</string>
+    <string name="intro_header_c">Smart Buying</string>
+    <string name="intro_description_c">It has never been easier</string>
+
+    <!-- Register -->
+    <string name="join_us">Join Us</string>
+
+    <!-- Errors -->
+    <string name="error_checktnc">Please confirm if you agree with Terms &amp; Conditions</string>
+
+    <!-- Dummy -->
+    <string name="dummy_tnc">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?
+    </string>
+    <string name="dummy_username">Official.IATS</string>
+    <string name="dummy_message">consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</string>
+    <string name="dummy_tags">#cars #leather #seat</string>
+    <string name="dummy_product_name">Wollsdorf</string>
+    <string name="dummy_product_brand">-Alcantara</string>
+    <string name="dummy_product_price">Rp 99.999.000,-</string>
+    <string name="dummy_product_size">51.25 sqf</string>
+    <string name="dummy_location">Alterpro Automotive</string>
+    <string name="dummy_date">01 Jan 2017</string>
+    <string-array name="dummy_article">
+        <item>Alpine</item>
+        <item>Atlantic</item>
+        <item>Euroglazed</item>
+        <item>Finesse</item>
+        <item>Genoa</item>
+        <item>Mammut</item>
+        <item>Oslo</item>
+        <item>Paloma</item>
+        <item>Prima</item>
+        <item>Pull Up</item>
+        <item>Sattel</item>
+    </string-array>
+</resources>

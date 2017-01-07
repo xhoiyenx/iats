@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#464646</color>
+    <color name="colorAccent">#464646</color>
+    <color name="buttonBorder">#e7b26c</color>
+    <color name="colorStatusBar">#00ffffff</color>
+    <color name="colorHeader">#ffffff</color>
+    <color name="colorToolbar">#1f1f1f</color>
+    <color name="colorfontDark">#444444</color>
+    <color name="colorfontGray">#bbbbbb</color>
+    <color name="colorBorderLight">#606060</color>
+
+    <color name="black">#000000</color>
+    <color name="white">#ffffff</color>
+    <color name="gold">#e7b26c</color>
+</resources>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="FormInput" parent="Widget.AppCompat.EditText">
+        <item name="android:background">@drawable/form_input</item>
+        <item name="android:textAppearance">@style/FormInput.TextAppearance</item>
+        <item name="android:paddingLeft">24dp</item>
+        <item name="android:paddingRight">24dp</item>
+        <item name="android:paddingTop">8dp</item>
+        <item name="android:paddingBottom">8dp</item>
+        <item name="android:minHeight">36dip</item>
+    </style>
+
+    <style name="FormInput.TextAppearance" parent="TextAppearance.AppCompat.Medium.Inverse">
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="FormButton" parent="Widget.AppCompat.Button">
+        <item name="android:background">@drawable/bg_form_button</item>
+        <item name="android:textAppearance">@style/FormButton.TextAppearance</item>
+        <item name="android:minHeight">36dip</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:typeface">sans</item>
+    </style>
+
+    <style name="FormButton.TextAppearance" parent="TextAppearance.AppCompat.Widget.Button">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="FormButton.Toggle" parent="FormButton">
+        <item name="android:background">@drawable/bg_form_toggle</item>
+        <item name="android:textColor">@color/color_size</item>
+    </style>
+</resources>
