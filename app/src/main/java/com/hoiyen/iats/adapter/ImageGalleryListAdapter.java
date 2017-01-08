@@ -1,12 +1,10 @@
 package com.hoiyen.iats.adapter;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Point;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,6 +28,7 @@ public final class ImageGalleryListAdapter extends RecyclerView.Adapter<ImageGal
 
     class Holder extends RecyclerView.ViewHolder {
         private ImageView image;
+
         private Holder(View view) {
             super(view);
             image = (ImageView) view.findViewById(R.id.photo_image);

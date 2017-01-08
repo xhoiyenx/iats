@@ -60,6 +60,7 @@ public class GalleryActivity extends Activity {
         if (actionBar != null) {
             actionBar.setDisplayShowHomeEnabled(true);
             actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setTitle(null);
         }
 
         adapter = new ImageGalleryListAdapter(this);

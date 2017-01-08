@@ -15,6 +15,14 @@
         <item name="android:textSize">12sp</item>
     </style>
 
+    <style name="FormInput.TextInputLayout" parent="Widget.Design.TextInputLayout">
+        <item name="counterTextAppearance">@style/FormInput.TextInputLayout.Counter</item>
+    </style>
+
+    <style name="FormInput.TextInputLayout.Counter">
+        <item name="android:textColor">@color/black</item>
+    </style>
+
     <style name="FormButton" parent="Widget.AppCompat.Button">
         <item name="android:background">@drawable/bg_form_button</item>
         <item name="android:textAppearance">@style/FormButton.TextAppearance</item>
