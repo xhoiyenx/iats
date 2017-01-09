@@ -11,6 +11,7 @@
         <item name="android:textColorPrimary">@color/gold</item>
         <item name="colorControlNormal">@color/buttonBorder</item>
         <item name="android:typeface">serif</item>
+        <item name="android:windowBackground">@color/dark</item>
     </style>
 
     <style name="AppTheme.Fullscreen" parent="AppTheme">
@@ -57,6 +58,10 @@
         <item name="android:background">@android:color/darker_gray</item>
         <item name="android:layout_marginTop">6dp</item>
         <item name="android:layout_marginBottom">6dp</item>
+    </style>
+
+    <style name="Divider.Light" parent="Divider">
+        <item name="android:background">@color/white</item>
     </style>
 
     <style name="Header.TextAppearance">
