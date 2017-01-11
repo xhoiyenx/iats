@@ -22,21 +22,23 @@
         android:theme="@style/AppTheme">
 
         <!-- [START firebase_service] -->
-        <service
-            android:name=".utils.AppFirebaseMessagingService">
+        <service android:name=".utils.AppFirebaseMessagingService">
             <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
         <!-- [END firebase_service] -->
         <!-- [START firebase_iid_service] -->
-        <service
-            android:name=".utils.AppFirebaseInstanceIDService">
+        <service android:name=".utils.AppFirebaseInstanceIDService">
             <intent-filter>
-                <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
             </intent-filter>
         </service>
         <!-- [END firebase_iid_service] -->
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyBrLgiHdXzfKRFnmxmNmUU6Fz5ao2b_OQw" />
 
         <activity
             android:name=".LoadActivity"
@@ -86,12 +88,13 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Light"
             android:windowSoftInputMode="adjustNothing" />
-
-        <meta-data
-            android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyBrLgiHdXzfKRFnmxmNmUU6Fz5ao2b_OQw" />
-
-        <activity android:name=".activities.ChatActivity" android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.ChatActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.BlogCaptionActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Light" />
     </application>
 
 </manifest>

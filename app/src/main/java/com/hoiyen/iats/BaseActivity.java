@@ -16,6 +16,7 @@ import android.widget.FrameLayout;
 import android.widget.Toolbar;
 
 import com.hoiyen.iats.activities.BlogActivity;
+import com.hoiyen.iats.activities.ChatActivity;
 import com.hoiyen.iats.activities.GalleryActivity;
 import com.hoiyen.iats.activities.ShopActivity;
 
@@ -91,10 +92,16 @@ public class BaseActivity extends Activity implements TabLayout.OnTabSelectedLis
                 overridePendingTransition(0, 0);
                 break;
 
+            case 1:
+                intent = new Intent(this, ChatActivity.class);
+                startActivity(intent);
+                finish();
+                break;
+
             case 2:
                 intent = new Intent(this, GalleryActivity.class);
                 startActivity(intent);
-                overridePendingTransition(0, 0);
+                finish();
                 break;
 
             case 4:

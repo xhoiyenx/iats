@@ -30,9 +30,11 @@
     <string name="text_change_position">Change Position</string>
     <string name="text_your_caption">Your caption</string>
     <string name="text_add_location">Add Location</string>
+    <string name="text_comments">Comments</string>
 
     <!-- Chat -->
     <string name="text_chat">Chats</string>
+    <string name="text_type_message">Type your message&#8230;</string>
 
     <!-- Form -->
     <string name="input_username">Username</string>

@@ -17,9 +17,9 @@ public class LoadActivity extends Activity {
         super.onCreate(savedInstanceState);
         //startActivity( new Intent(this, RegisterActivity.class) );
         //startActivity( new Intent(this, GalleryActivity.class) );
-        //startActivity( new Intent(this, BlogActivity.class) );
+        startActivity( new Intent(this, BlogActivity.class) );
         //startActivity( new Intent(this, ProductActivity.class) );
-        startActivity( new Intent(this, ChatActivity.class) );
+        //startActivity( new Intent(this, ChatActivity.class) );
         finish();
     }
     

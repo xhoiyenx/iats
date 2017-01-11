@@ -1,6 +1,5 @@
 package com.hoiyen.iats.activities;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -18,11 +17,17 @@ public class BlogActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_blog);
 
-        blogList = (RecyclerView) findViewById(R.id.blogList);
+        blogList = (RecyclerView) findViewById(R.id.blog_list);
         blogList.setHasFixedSize(true);
 
         FeedListAdapter adapter = new FeedListAdapter(this);
         blogList.setAdapter(adapter);
         blogList.setLayoutManager(new LinearLayoutManager(this));
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        setTabPosition(0);
     }
 }
