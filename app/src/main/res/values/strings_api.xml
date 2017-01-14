@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="api_login">http://api.hoiyen.net/user/login</string>
+    <string name="api_register">http://api.hoiyen.net/user/register</string>
 </resources>

@@ -11,6 +11,8 @@ import android.widget.Toast;
 
 import com.hoiyen.iats.R;
 import com.hoiyen.iats.library.ApiRequest;
+import com.hoiyen.iats.models.UserModel;
+import com.pixplicity.easyprefs.library.Prefs;
 
 import org.json.JSONObject;
 
@@ -55,10 +57,11 @@ public class LoginActivity extends Activity {
             ApiRequest.LoginRequest(getString(R.string.api_login), username.getText().toString(), password.getText().toString(), new ApiRequest.Listener<JSONObject>() {
                 @Override
                 public void onResponse(JSONObject response) {
-                    /*
+                    final UserModel user = UserModel.parseJSON(response);
+                    Prefs.putString("token", user.token);
+                    Prefs.putString("username", user.username);
                     startActivity(new Intent(LoginActivity.this, BlogActivity.class));
                     finish();
-                    */
                 }
 
                 @Override
