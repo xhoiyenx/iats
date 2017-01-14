@@ -17,7 +17,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="80dp"
         android:text="Join Us"
-        android:textSize="30sp"
+        android:textSize="36sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -41,48 +41,48 @@
             android:id="@+id/username_edit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/ic_user_white"
             android:drawablePadding="@dimen/input_padding"
             android:drawableStart="@drawable/ic_user_white"
             android:ems="10"
             android:hint="@string/input_username"
             android:inputType="textPersonName"
+            android:paddingBottom="16dp"
             android:textAppearance="@style/FormInput.TextAppearance" />
 
         <EditText
             android:id="@+id/password_edit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/ic_padlock_white"
             android:drawablePadding="@dimen/input_padding"
             android:drawableStart="@drawable/ic_padlock_white"
             android:ems="10"
             android:hint="@string/input_password"
             android:inputType="textPassword"
+            android:paddingBottom="16dp"
             android:textAppearance="@style/FormInput.TextAppearance" />
 
         <EditText
-            android:id="@+id/email"
+            android:id="@+id/email_edit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/ic_email_white"
             android:drawablePadding="@dimen/input_padding"
             android:drawableStart="@drawable/ic_email_white"
             android:ems="10"
             android:hint="@string/input_email"
             android:inputType="textEmailAddress"
+            android:paddingBottom="16dp"
             android:textAppearance="@style/FormInput.TextAppearance" />
 
         <EditText
-            android:id="@+id/phone"
+            android:id="@+id/mobile_edit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/ic_smartphone_white"
             android:drawablePadding="@dimen/input_padding"
             android:drawableStart="@drawable/ic_smartphone_white"
             android:ems="10"
             android:hint="@string/input_phone"
             android:inputType="phone"
+            android:paddingBottom="16dp"
             android:textAppearance="@style/FormInput.TextAppearance" />
     </LinearLayout>
 
@@ -100,4 +100,21 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent" />
+
+    <ProgressBar
+        android:visibility="gone"
+        android:id="@+id/loader"
+        style="?android:attr/progressBarStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:indeterminate="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/register_button"
+        app:layout_constraintVertical_bias="0.0" />
 </android.support.constraint.ConstraintLayout>

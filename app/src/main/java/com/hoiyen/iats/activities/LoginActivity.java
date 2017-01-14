@@ -4,10 +4,15 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.hoiyen.iats.R;
+import com.hoiyen.iats.library.ApiRequest;
+
+import org.json.JSONObject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -19,7 +24,8 @@ public class LoginActivity extends Activity {
     EditText username;
     @BindView(R.id.password_edit)
     EditText password;
-
+    @BindView(R.id.loader)
+    ProgressBar loader;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +37,7 @@ public class LoginActivity extends Activity {
     }
 
     @OnClick(R.id.login_button)
-    public void doLogin() {
+    public void doLogin(final View view) {
 
         boolean error = false;
 
@@ -42,6 +48,26 @@ public class LoginActivity extends Activity {
 
         // Request API
         if (!error) {
+
+            view.setVisibility(View.GONE);
+            loader.setVisibility(View.VISIBLE);
+
+            ApiRequest.LoginRequest(getString(R.string.api_login), username.getText().toString(), password.getText().toString(), new ApiRequest.Listener<JSONObject>() {
+                @Override
+                public void onResponse(JSONObject response) {
+                    /*
+                    startActivity(new Intent(LoginActivity.this, BlogActivity.class));
+                    finish();
+                    */
+                }
+
+                @Override
+                public void onErrorResponse(String response) {
+                    Toast.makeText(LoginActivity.this, response, Toast.LENGTH_LONG).show();
+                    view.setVisibility(View.VISIBLE);
+                    loader.setVisibility(View.GONE);
+                }
+            });
 
         }
 
