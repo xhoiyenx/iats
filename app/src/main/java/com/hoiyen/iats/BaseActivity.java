@@ -4,24 +4,29 @@ import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.provider.MediaStore;
+import android.support.annotation.NonNull;
+import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.Toast;
 import android.widget.Toolbar;
 
 import com.hoiyen.iats.activities.BlogActivity;
 import com.hoiyen.iats.activities.ChatActivity;
 import com.hoiyen.iats.activities.GalleryActivity;
+import com.hoiyen.iats.activities.LoginActivity;
 import com.hoiyen.iats.activities.ShopActivity;
+import com.hoiyen.iats.activities.UpdateProfileActivity;
+import com.pixplicity.easyprefs.library.Prefs;
 
-public class BaseActivity extends Activity implements TabLayout.OnTabSelectedListener {
+public class BaseActivity extends Activity implements TabLayout.OnTabSelectedListener, NavigationView.OnNavigationItemSelectedListener {
 
+    private NavigationView navigationView;
     private DrawerLayout menuDrawer;
     private TabLayout tabLayout;
 
@@ -33,6 +38,7 @@ public class BaseActivity extends Activity implements TabLayout.OnTabSelectedLis
     @Override
     public void setContentView(int layoutResID) {
         menuDrawer = (DrawerLayout) getLayoutInflater().inflate(R.layout.activity_base, null);
+        navigationView = (NavigationView) menuDrawer.findViewById(R.id.navigation);
         final FrameLayout container = (FrameLayout) menuDrawer.findViewById(R.id.activityContainer);
 
         getLayoutInflater().inflate(layoutResID, container);
@@ -56,6 +62,8 @@ public class BaseActivity extends Activity implements TabLayout.OnTabSelectedLis
 
         tabLayout = (TabLayout) findViewById(R.id.tab_menu);
         tabLayout.addOnTabSelectedListener(this);
+
+        navigationView.setNavigationItemSelectedListener(this);
     }
 
     @Override
@@ -132,6 +140,29 @@ public class BaseActivity extends Activity implements TabLayout.OnTabSelectedLis
                 tabLayout.setScrollPosition(0, 0, false);
                 break;
         }
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        switch (item.getOrder()) {
+
+            // Update profile
+            case 0: {
+                startActivity(new Intent(this, UpdateProfileActivity.class));
+            }
+            break;
+
+            // Logout
+            case 6: {
+                Prefs.remove("token");
+                startActivity(new Intent(this, LoginActivity.class));
+                Toast.makeText(this, getString(R.string.text_loggedout), Toast.LENGTH_SHORT).show();
+                finish();
+            }
+            break;
+
+        }
+        return false;
     }
 
     /**

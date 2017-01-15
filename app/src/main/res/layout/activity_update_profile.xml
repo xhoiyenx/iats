@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_update_profile"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.hoiyen.iats.activities.UpdateProfileActivity">
+
+    <Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/toolbar"
+        android:orientation="vertical">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center"
+            android:src="@drawable/avatar_placeholder" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/text_edit"
+            android:textAlignment="center" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:layout_marginEnd="64dp"
+            android:layout_marginLeft="64dp"
+            android:layout_marginRight="64dp"
+            android:layout_marginStart="64dp"
+            android:layout_marginTop="16dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/username_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawablePadding="@dimen/input_padding"
+                android:drawableStart="@drawable/ic_user_white"
+                android:paddingBottom="4dp"
+                android:paddingTop="4dp" />
+
+            <View
+                style="@style/Divider.Light"
+                android:layout_marginStart="32dp" />
+
+            <TextView
+                android:id="@+id/email_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawablePadding="@dimen/input_padding"
+                android:drawableStart="@drawable/ic_email_white"
+                android:paddingBottom="4dp"
+                android:paddingTop="4dp" />
+
+            <View
+                style="@style/Divider.Light"
+                android:layout_marginStart="32dp" />
+
+            <EditText
+                android:id="@+id/fullname_edit"
+                style="@style/FormInput2"
+                android:drawableStart="@drawable/ic_user_white"
+                android:hint="@string/input_fullname"
+                android:inputType="textPersonName" />
+
+            <View
+                style="@style/Divider.Light"
+                android:layout_marginStart="32dp" />
+
+            <EditText
+                android:id="@+id/mobile_edit"
+                style="@style/FormInput2"
+                android:drawableStart="@drawable/ic_smartphone_white"
+                android:hint="@string/input_phone"
+                android:inputType="phone" />
+
+            <View
+                style="@style/Divider.Light"
+                android:layout_marginStart="32dp" />
+
+            <EditText
+                android:id="@+id/address_edit"
+                style="@style/FormInput2"
+                android:drawableStart="@drawable/ic_smartphone_white"
+                android:hint="@string/input_address"
+                android:inputType="text" />
+
+            <View
+                style="@style/Divider.Light"
+                android:layout_marginStart="32dp" />
+
+            <EditText
+                android:id="@+id/city_edit"
+                style="@style/FormInput2"
+                android:drawableStart="@drawable/ic_smartphone_white"
+                android:hint="@string/input_city"
+                android:inputType="textMultiLine" />
+
+            <View
+                style="@style/Divider.Light"
+                android:layout_marginStart="32dp" />
+
+            <EditText
+                android:id="@+id/bio_edit"
+                style="@style/FormInput2"
+                android:drawableStart="@drawable/ic_smartphone_white"
+                android:hint="@string/input_bio"
+                android:inputType="textMultiLine" />
+
+            <View
+                style="@style/Divider.Light"
+                android:layout_marginStart="32dp" />
+
+            <Button
+                android:id="@+id/submit_button"
+                style="@style/FormButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/text_save" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+</RelativeLayout>

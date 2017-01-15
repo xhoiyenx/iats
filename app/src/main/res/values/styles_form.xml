@@ -4,8 +4,8 @@
     <style name="FormInput" parent="Widget.AppCompat.EditText">
         <item name="android:background">@drawable/form_input</item>
         <item name="android:textAppearance">@style/FormInput.TextAppearance</item>
-        <item name="android:paddingLeft">24dp</item>
-        <item name="android:paddingRight">24dp</item>
+        <item name="android:paddingStart">24dp</item>
+        <item name="android:paddingEnd">24dp</item>
         <item name="android:paddingTop">8dp</item>
         <item name="android:paddingBottom">8dp</item>
         <item name="android:minHeight">36dip</item>
@@ -21,6 +21,18 @@
 
     <style name="FormInput.TextInputLayout.Counter">
         <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="FormInput2" parent="FormInput">
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:paddingStart">0dp</item>
+        <item name="android:paddingEnd">0dp</item>
+        <item name="android:paddingTop">4dp</item>
+        <item name="android:paddingBottom">4dp</item>
+        <item name="android:minHeight">28dip</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:drawablePadding">@dimen/input_padding</item>
     </style>
 
     <style name="FormButton" parent="Widget.AppCompat.Button">

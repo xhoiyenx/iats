@@ -5,6 +5,7 @@
     <string name="text_login">Log In</string>
     <string name="text_register">Get Started</string>
     <string name="text_signup">Sign Up</string>
+    <string name="text_save">Save</string>
     <string name="text_dont_have_account">Don\'t have account?</string>
     <string name="text_forgot_password">Forgot password?</string>
     <string name="text_become_member">BECOME A MEMBER</string>
@@ -32,6 +33,17 @@
     <string name="text_your_caption">Your caption</string>
     <string name="text_add_location">Add Location</string>
     <string name="text_comments">Comments</string>
+    <string name="text_loggedout">You have successfully logged out</string>
+    <string name="text_edit">edit</string>
+
+    <!-- Menu -->
+    <string name="menu_my_profile">My Profile</string>
+    <string name="menu_change_password">Change Password</string>
+    <string name="menu_payment_method">Payment Method</string>
+    <string name="menu_history">History</string>
+    <string name="menu_wishlist">Wish List</string>
+    <string name="menu_order_status">Buying Status</string>
+    <string name="menu_signout">Sign Out</string>
 
     <!-- Chat -->
     <string name="text_chat">Chats</string>
@@ -39,9 +51,13 @@
 
     <!-- Form -->
     <string name="input_username">Username</string>
+    <string name="input_fullname">Fullname</string>
     <string name="input_password">Password</string>
     <string name="input_email">E-mail</string>
     <string name="input_phone">Mobile</string>
+    <string name="input_address">Address</string>
+    <string name="input_city">City</string>
+    <string name="input_bio">Bio</string>
 
     <!-- Errors -->
     <string name="error_empty_form">Please complete the form</string>
