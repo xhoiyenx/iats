@@ -73,6 +73,8 @@ public class RegisterActivity extends Activity {
                     final UserModel user = UserModel.parseJSON(response);
                     Prefs.putString("token", user.token);
                     Prefs.putString("username", user.username);
+                    Prefs.putString("usermail", user.usermail);
+                    Prefs.putString("usercell", user.usercell);
                     startActivity(new Intent(RegisterActivity.this, BlogActivity.class));
                     finish();
                 }

@@ -24,6 +24,7 @@
             android:src="@drawable/avatar_placeholder" />
 
         <TextView
+            android:visibility="invisible"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/text_edit"

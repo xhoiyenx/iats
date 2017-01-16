@@ -37,13 +37,13 @@ public class ShopActivity extends BaseActivity {
         materialList = (RecyclerView) findViewById(R.id.materialList);
         materialList.setNestedScrollingEnabled(false);
         materialList.setHasFixedSize(true);
-        materialList.setLayoutManager(new GridLayoutManager(this, 2));
+        materialList.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         materialList.setAdapter(productListAdapter);
 
         merchandiseList = (RecyclerView) findViewById(R.id.merchandiseList);
         merchandiseList.setNestedScrollingEnabled(false);
         merchandiseList.setHasFixedSize(true);
-        merchandiseList.setLayoutManager(new GridLayoutManager(this, 2));
+        merchandiseList.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         merchandiseList.setAdapter(productListAdapter);
     }
 }

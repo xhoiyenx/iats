@@ -35,6 +35,8 @@ public final class FeedListAdapter extends RecyclerView.Adapter<FeedListAdapter.
             super(view);
             ButterKnife.bind(this, view);
 
+            caption.setSelected(true);
+
             // Readmore listener
             readmore.setOnClickListener(new View.OnClickListener() {
                 @Override

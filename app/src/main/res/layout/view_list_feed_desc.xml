@@ -61,8 +61,13 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:ellipsize="end"
+            android:focusableInTouchMode="true"
+            android:focusable="true"
+            android:ellipsize="marquee"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:scrollHorizontally="true"
             android:maxLines="1"
+            android:singleLine="true"
             android:text="@string/dummy_message"
             android:textColor="@color/colorfontDark" />
 
