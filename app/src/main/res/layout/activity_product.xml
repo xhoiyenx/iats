@@ -67,7 +67,7 @@
             android:background="@drawable/bg_form_select"
             android:entries="@array/dummy_article"
             android:spinnerMode="dialog"
-            android:theme="@style/AppTheme.Spinner"
+            android:theme="@style/IATSTheme.Spinner"
             android:layout_marginBottom="8dp" />
 
         <Spinner
@@ -78,7 +78,7 @@
             android:background="@drawable/bg_form_select"
             android:entries="@array/dummy_article"
             android:spinnerMode="dialog"
-            android:theme="@style/AppTheme.Spinner"
+            android:theme="@style/IATSTheme.Spinner"
             android:layout_marginBottom="8dp" />
 
         <android.support.v7.widget.RecyclerView

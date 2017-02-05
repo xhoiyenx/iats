@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.hoiyen.iats">
 
     <uses-feature
@@ -14,12 +15,13 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
+        tools:replace="android:theme"
         android:name=".utils.IATS"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/IATSTheme">
 
         <!-- [START firebase_service] -->
         <service android:name=".utils.AppFirebaseMessagingService">
@@ -42,7 +44,7 @@
 
         <activity
             android:name=".LoadActivity"
-            android:theme="@style/AppTheme.Splash">
+            android:theme="@style/IATSTheme.Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -52,19 +54,19 @@
         <activity
             android:name=".activities.LoginActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.Fullscreen" />
+            android:theme="@style/IATSTheme.Fullscreen" />
         <activity
             android:name=".activities.IntroActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.Fullscreen" />
+            android:theme="@style/IATSTheme.Fullscreen" />
         <activity
             android:name=".activities.RegisterActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.Fullscreen" />
+            android:theme="@style/IATSTheme.Fullscreen" />
         <activity
             android:name=".activities.TermsActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.Fullscreen" />
+            android:theme="@style/IATSTheme.Fullscreen" />
         <activity
             android:name=".BaseActivity"
             android:screenOrientation="portrait" />
@@ -86,7 +88,7 @@
         <activity
             android:name=".activities.GalleryShareActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.Light"
+            android:theme="@style/IATSTheme.Light"
             android:windowSoftInputMode="adjustNothing" />
         <activity
             android:name=".activities.ChatActivity"
@@ -94,11 +96,11 @@
         <activity
             android:name=".activities.BlogCaptionActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.Light" />
+            android:theme="@style/IATSTheme.Light" />
         <activity
             android:name=".activities.UpdateProfileActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.Fullscreen" />
+            android:theme="@style/IATSTheme.Fullscreen" />
     </application>
 
 </manifest>
