@@ -20,11 +20,11 @@ public class ChatActivity extends Activity {
     @BindView(R.id.toolbar)
     Toolbar toolbar;
 
-    @BindView(R.id.member_list)
-    RecyclerView member_rv;
+    @BindView(R.id.onlineMemberList)
+    RecyclerView onlineMemberList;
 
-    @BindView(R.id.chat_list)
-    RecyclerView chat_rv;
+    @BindView(R.id.chatList)
+    RecyclerView chatList;
 
     private MemberOnlineListAdapter member_adapter;
 
@@ -64,8 +64,8 @@ public class ChatActivity extends Activity {
         member_adapter = new MemberOnlineListAdapter(this);
 
         // Setup member recycler view
-        member_rv.setHasFixedSize(true);
-        member_rv.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
-        member_rv.setAdapter(member_adapter);
+        onlineMemberList.setHasFixedSize(true);
+        onlineMemberList.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+        onlineMemberList.setAdapter(member_adapter);
     }
 }

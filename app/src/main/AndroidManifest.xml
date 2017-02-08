@@ -15,13 +15,13 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
-        tools:replace="android:theme"
         android:name=".utils.IATS"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/IATSTheme">
+        android:theme="@style/IATSTheme"
+        tools:replace="android:theme">
 
         <!-- [START firebase_service] -->
         <service android:name=".utils.AppFirebaseMessagingService">
@@ -30,6 +30,8 @@
             </intent-filter>
         </service>
         <!-- [END firebase_service] -->
+
+
         <!-- [START firebase_iid_service] -->
         <service android:name=".utils.AppFirebaseInstanceIDService">
             <intent-filter>
@@ -101,6 +103,7 @@
             android:name=".activities.UpdateProfileActivity"
             android:screenOrientation="portrait"
             android:theme="@style/IATSTheme.Fullscreen" />
+
     </application>
 
 </manifest>

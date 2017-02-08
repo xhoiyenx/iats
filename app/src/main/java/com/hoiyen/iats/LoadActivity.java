@@ -19,26 +19,11 @@ public class LoadActivity extends Activity {
         if ("".equals(token)) {
             // empty token, go to login activity
             startActivity(new Intent(this, LoginActivity.class));
-        }
-        else {
+        } else {
             // token available, go to blog
             startActivity(new Intent(this, BlogActivity.class));
         }
         finish();
-
-        /*
-        ProgressDialog dialog = new ProgressDialog(this);
-        dialog.setIndeterminate(true);
-        dialog.setMessage("Loading");
-        dialog.show();
-        */
-
-        //startActivity( new Intent(this, RegisterActivity.class) );
-        //startActivity( new Intent(this, GalleryActivity.class) );
-        //startActivity( new Intent(this, BlogActivity.class) );
-        //startActivity( new Intent(this, ProductActivity.class) );
-        //startActivity( new Intent(this, ChatActivity.class) );
-        //finish();
 
     }
 

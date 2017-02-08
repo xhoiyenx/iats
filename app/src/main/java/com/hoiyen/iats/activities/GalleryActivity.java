@@ -79,7 +79,6 @@ public class GalleryActivity extends Activity {
             adapter.putDataset(images);
         }
 
-        Toast.makeText(this, "Loaded", Toast.LENGTH_SHORT).show();
     }
 
     @Override

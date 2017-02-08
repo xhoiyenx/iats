@@ -12,4 +12,33 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
+    <LinearLayout
+        android:layout_below="@id/inc_toolbar"
+        android:layout_above="@+id/inc_input_message"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginBottom="35dp">
+
+        <include
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            layout="@layout/list_comment" />
+
+        <View style="@style/Divider" />
+
+        <android.support.v7.widget.RecyclerView
+            android:layout_marginBottom="4dp"
+            android:id="@+id/commentList"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
+
+    <include
+        android:id="@+id/inc_input_message"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        layout="@layout/view_input_message" />
+
 </RelativeLayout>

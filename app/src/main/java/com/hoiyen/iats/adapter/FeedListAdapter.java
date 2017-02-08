@@ -2,7 +2,9 @@ package com.hoiyen.iats.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,6 +33,14 @@ public final class FeedListAdapter extends RecyclerView.Adapter<FeedListAdapter.
         @BindView(R.id.readmore_text)
         TextView readmore;
 
+        @BindView(R.id.like_count_text)
+        TextView like;
+
+        @BindView(R.id.tagList)
+        RecyclerView tagList;
+
+        private TagListAdapter adapter;
+
         private Holder(View view) {
             super(view);
             ButterKnife.bind(this, view);
@@ -43,8 +53,16 @@ public final class FeedListAdapter extends RecyclerView.Adapter<FeedListAdapter.
                 public void onClick(View view) {
                     readmore.setVisibility(View.GONE);
                     caption.setMaxLines(10);
+                    caption.setSingleLine(false);
                 }
             });
+
+            // Setup tags
+            adapter = new TagListAdapter(context);
+            tagList.setHasFixedSize(true);
+            tagList.setAdapter(adapter);
+            tagList.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
+
         }
     }
 
@@ -59,7 +77,7 @@ public final class FeedListAdapter extends RecyclerView.Adapter<FeedListAdapter.
     }
 
     @Override
-    public void onBindViewHolder(Holder holder, int position) {
+    public void onBindViewHolder(final Holder holder, int position) {
 
         // Comments listener
         holder.comments.setOnClickListener(new View.OnClickListener() {
@@ -79,6 +97,33 @@ public final class FeedListAdapter extends RecyclerView.Adapter<FeedListAdapter.
                 intent.putExtra(Intent.EXTRA_SUBJECT, "Blog subject");
                 intent.putExtra(Intent.EXTRA_TEXT, "Blog content");
                 context.startActivity(Intent.createChooser(intent, "Share via"));
+            }
+        });
+
+        // Like count listener
+        holder.like.setOnClickListener(new View.OnClickListener() {
+
+            int liked = 0;
+
+            @Override
+            public void onClick(View v) {
+
+                if (liked == 0) {
+                    v.setSelected(true);
+                    liked = 1;
+                }
+                else {
+                    v.setSelected(false);
+                    liked = 0;
+                }
+
+                if (v.isSelected()) {
+                    ((TextView) v).setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_heart_gold, 0, 0, 0);
+                }
+                else {
+                    ((TextView) v).setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_heart, 0, 0, 0);
+                }
+
             }
         });
     }
