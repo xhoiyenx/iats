@@ -6,6 +6,8 @@ import android.os.Bundle;
 
 import com.hoiyen.iats.activities.BlogActivity;
 import com.hoiyen.iats.activities.LoginActivity;
+import com.hoiyen.iats.activities.PostShareActivity;
+import com.hoiyen.iats.activities.SearchActivity;
 import com.pixplicity.easyprefs.library.Prefs;
 
 public class LoadActivity extends Activity {
@@ -21,7 +23,7 @@ public class LoadActivity extends Activity {
             startActivity(new Intent(this, LoginActivity.class));
         } else {
             // token available, go to blog
-            startActivity(new Intent(this, BlogActivity.class));
+            startActivity(new Intent(this, SearchActivity.class));
         }
         finish();
 

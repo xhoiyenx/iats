@@ -17,6 +17,7 @@ import android.widget.Toast;
 import android.widget.Toolbar;
 
 import com.hoiyen.iats.activities.BlogActivity;
+import com.hoiyen.iats.activities.CartActivity;
 import com.hoiyen.iats.activities.ChatActivity;
 import com.hoiyen.iats.activities.GalleryActivity;
 import com.hoiyen.iats.activities.LoginActivity;
@@ -82,6 +83,10 @@ public class BaseActivity extends Activity implements TabLayout.OnTabSelectedLis
                 } else {
                     menuDrawer.openDrawer(GravityCompat.START);
                 }
+                return true;
+
+            case R.id.top_menu_cart:
+                startActivity(new Intent(this, CartActivity.class));
                 return true;
 
             default:

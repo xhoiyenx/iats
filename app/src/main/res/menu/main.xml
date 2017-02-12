@@ -4,6 +4,7 @@
         android:icon="@drawable/ic_search"
         android:showAsAction="ifRoom" />
     <item
+        android:id="@+id/top_menu_cart"
         android:icon="@drawable/ic_cart"
         android:showAsAction="ifRoom"
         android:title="@string/text_cart" />

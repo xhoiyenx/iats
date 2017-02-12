@@ -22,6 +22,15 @@
         android:supportsRtl="true"
         android:theme="@style/IATSTheme"
         tools:replace="android:theme">
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="com.hoiyen.iats.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/filepath" />
+        </provider>
 
         <!-- [START firebase_service] -->
         <service android:name=".utils.AppFirebaseMessagingService">
@@ -42,7 +51,7 @@
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyBrLgiHdXzfKRFnmxmNmUU6Fz5ao2b_OQw" />
+            android:value="AIzaSyCB_mGRU7Qa32SVT7kqDLWu-0WBfZ_qGu4" />
 
         <activity
             android:name=".LoadActivity"
@@ -103,7 +112,11 @@
             android:name=".activities.UpdateProfileActivity"
             android:screenOrientation="portrait"
             android:theme="@style/IATSTheme.Fullscreen" />
-
+        <activity android:name=".activities.PostShareActivity" />
+        <activity android:name=".activities.CartActivity" />
+        <activity
+            android:name=".activities.SearchActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

@@ -58,10 +58,11 @@ public class LoginActivity extends Activity {
                 @Override
                 public void onResponse(JSONObject response) {
                     final UserModel user = UserModel.parseJSON(response);
-                    Prefs.putString("token", user.token);
+                    Prefs.putString("token", user.apitoken);
                     Prefs.putString("username", user.username);
                     Prefs.putString("usermail", user.usermail);
                     Prefs.putString("usercell", user.usercell);
+                    Prefs.putString("avatar", user.avatar_url);
                     startActivity(new Intent(LoginActivity.this, BlogActivity.class));
                     finish();
                 }

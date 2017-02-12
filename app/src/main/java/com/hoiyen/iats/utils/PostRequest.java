@@ -13,7 +13,7 @@ import org.json.JSONObject;
 import java.io.UnsupportedEncodingException;
 import java.util.Map;
 
-public final class PostRequest extends Request<JSONObject> {
+public class PostRequest extends Request<JSONObject> {
 
     private Response.Listener<JSONObject> listener;
     private Map<String, String> params;

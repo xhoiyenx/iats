@@ -13,6 +13,44 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:orientation="horizontal"
+        android:background="@color/colorToolbar"
+        android:weightSum="3">
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/text_gallery"
+            style="@android:style/Widget.Material.Light.ButtonBar"
+            android:textStyle="normal|bold"
+            android:onClick="showGallery" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/text_photo"
+            style="@android:style/Widget.Material.Light.ButtonBar"
+            android:textStyle="normal|bold"
+            android:onClick="takePhoto" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/text_video"
+            style="@android:style/Widget.Material.Light.ButtonBar"
+            android:textStyle="normal|bold"
+            android:onClick="takeVideo" />
+    </LinearLayout>
+
+    <!--
     <android.support.v7.widget.RecyclerView
         android:id="@+id/image_list"
         android:layout_width="match_parent"
@@ -43,5 +81,6 @@
             android:text="@string/text_video" />
 
     </android.support.design.widget.TabLayout>
+    -->
 
 </RelativeLayout>

@@ -2,14 +2,17 @@ package com.hoiyen.iats.models;
 
 import org.json.JSONObject;
 
-public final class UserModel {
+import java.io.Serializable;
+
+public final class UserModel implements Serializable {
 
     public String userid;
     public String username;
     public String usermail;
     public String usercell;
-    public String token;
+    public String apitoken;
     public String fcmtoken;
+    public String avatar_url;
 
     public static UserModel parseJSON(JSONObject json) {
         UserModel user = new UserModel();
@@ -17,7 +20,8 @@ public final class UserModel {
         user.username = json.optString("username");
         user.usermail = json.optString("usermail");
         user.usercell = json.optString("usercell");
-        user.token = json.optString("token");
+        user.apitoken = json.optString("api_token");
+        user.avatar_url = json.optString("avatar_url");
         return user;
     }
 

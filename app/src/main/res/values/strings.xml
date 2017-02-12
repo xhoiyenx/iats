@@ -25,6 +25,7 @@
     <string name="text_color">Color</string>
     <string name="text_seemore">see more&#8230;</string>
     <string name="text_library">Library</string>
+    <string name="text_gallery">Gallery</string>
     <string name="text_photo">Photo</string>
     <string name="text_video">Video</string>
     <string name="text_watermark_on">Watermark ON</string>
@@ -36,6 +37,14 @@
     <string name="text_loggedout">You have successfully logged out</string>
     <string name="text_edit">edit</string>
     <string name="text_image_description">Description</string>
+    <string name="text_my_orders">My Orders</string>
+    <string name="text_grand_total">Grand Total</string>
+    <string name="text_buy_now">Buy Now</string>
+    <string name="text_tags_hint">Type your tags</string>
+    <string name="text_all">All</string>
+    <string name="text_tags">Tags</string>
+    <string name="text_products">Products</string>
+    <string name="text_profiles">Profiles</string>
 
     <!-- Menu -->
     <string name="menu_my_profile">My Profile</string>
@@ -62,6 +71,8 @@
 
     <!-- Errors -->
     <string name="error_empty_form">Please complete the form</string>
+    <string name="error_submit_post">There\'s a problem when submitting your data, please try again</string>
+    <string name="error_select_location">Please select your location</string>
 
     <!-- Intro -->
     <string name="intro_header_a">Connecting</string>

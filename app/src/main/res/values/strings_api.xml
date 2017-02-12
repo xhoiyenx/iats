@@ -2,4 +2,5 @@
 <resources>
     <string name="api_login">http://api.indonesiatrimmer.com/user/login</string>
     <string name="api_register">http://api.indonesiatrimmer.com/user/register</string>
+    <string name="api_share_post">http://api.indonesiatrimmer.com/post/post</string>
 </resources>

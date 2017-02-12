@@ -5,21 +5,35 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.hoiyen.iats.R;
+import com.hoiyen.iats.models.TagModel;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public final class TagListAdapter extends RecyclerView.Adapter<TagListAdapter.Holder> {
 
     private Context context;
+    private List<TagModel> tags = new ArrayList<>();
+    private boolean editable = false;
 
     class Holder extends RecyclerView.ViewHolder {
-        public Holder(View itemView) {
-            super(itemView);
+        private TextView tagView;
+        public Holder(View view) {
+            super(view);
+            tagView = (TextView) view.findViewById(R.id.name_text);
         }
     }
 
     public TagListAdapter(Context context) {
         this.context = context;
+    }
+
+    public void putTag(String tag) {
+        tags.add(new TagModel(tag));
+        notifyItemInserted(tags.size() + 1);
     }
 
     @Override
@@ -30,12 +44,13 @@ public final class TagListAdapter extends RecyclerView.Adapter<TagListAdapter.Ho
 
     @Override
     public void onBindViewHolder(Holder holder, int position) {
-
+        final TagModel tag = tags.get(position);
+        holder.tagView.setText(tag.name);
     }
 
     @Override
     public int getItemCount() {
-        return 10;
+        return tags.size();
     }
 
 }

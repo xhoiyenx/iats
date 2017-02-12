@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import com.hoiyen.iats.BaseActivity;
 import com.hoiyen.iats.R;
 import com.hoiyen.iats.adapter.FeedListAdapter;
+import com.hoiyen.iats.utils.SampleData;
 
 public class BlogActivity extends BaseActivity {
 
@@ -23,6 +24,8 @@ public class BlogActivity extends BaseActivity {
         FeedListAdapter adapter = new FeedListAdapter(this);
         blogList.setAdapter(adapter);
         blogList.setLayoutManager(new LinearLayoutManager(this));
+        adapter.putDataset(SampleData.loadPosts());
+
     }
 
     @Override

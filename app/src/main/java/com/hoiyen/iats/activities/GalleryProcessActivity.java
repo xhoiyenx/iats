@@ -5,7 +5,9 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -16,9 +18,16 @@ import android.widget.RelativeLayout;
 import android.widget.ToggleButton;
 import android.widget.Toolbar;
 
+import com.hoiyen.iats.BuildConfig;
 import com.hoiyen.iats.R;
+import com.hoiyen.iats.utils.FunctionHelper;
+import com.pixplicity.easyprefs.library.Prefs;
+import com.squareup.picasso.Picasso;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -41,6 +50,7 @@ public class GalleryProcessActivity extends Activity implements View.OnClickList
     Toolbar toolbar;
 
     private String filepath;
+    private boolean useWatermark = false;
     private int selectedPosition = 1;
     private static final int POSITION_BOTTOM = 1;
     private static final int POSITION_BOTTOM_RIGHT = 2;
@@ -76,6 +86,21 @@ public class GalleryProcessActivity extends Activity implements View.OnClickList
         final File file = new File(filepath);
         if (file.exists()) {
             Bitmap bitmap = BitmapFactory.decodeFile(file.getAbsolutePath());
+
+            // Resize
+            bitmap = FunctionHelper.resizeImage(bitmap, null);
+
+            // Replace the image
+            try {
+                final FileOutputStream fOut = new FileOutputStream(file);
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fOut);
+                fOut.flush();
+                fOut.close();
+            }
+            catch ( IOException e) {
+                Log.e("Gallery Process", e.getMessage());
+            }
+
             image.setImageBitmap(bitmap);
         }
 
@@ -84,6 +109,14 @@ public class GalleryProcessActivity extends Activity implements View.OnClickList
     @Override
     protected void onStart() {
         super.onStart();
+
+        // Set user avatar as watermark image
+        final String avatar_url = Prefs.getString("avatar", "");
+        if (!"".equals(avatar_url)) {
+            Picasso.with(this).load(avatar_url).resize(200, 200).into(watermark_image);
+        }
+
+        // Set listener
         setListener();
     }
 
@@ -102,7 +135,12 @@ public class GalleryProcessActivity extends Activity implements View.OnClickList
                 break;
 
             default:
-                Intent intent = new Intent(this, GalleryShareActivity.class);
+                Intent intent = new Intent(this, PostShareActivity.class);
+
+                if (useWatermark) {
+                    intent.putExtra("watermark_position", selectedPosition);
+                }
+
                 intent.putExtra("media", filepath);
                 startActivity(intent);
                 break;
@@ -118,9 +156,11 @@ public class GalleryProcessActivity extends Activity implements View.OnClickList
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 if (b) {
                     watermark_image.setVisibility(View.VISIBLE);
+                    useWatermark = true;
                 }
                 else {
                     watermark_image.setVisibility(View.GONE);
+                    useWatermark = false;
                 }
             }
         });
@@ -131,7 +171,7 @@ public class GalleryProcessActivity extends Activity implements View.OnClickList
     public void onClick(View view) {
         RelativeLayout.LayoutParams layout = (RelativeLayout.LayoutParams) watermark_image.getLayoutParams();
 
-        if (selectedPosition == 8) {
+        if (selectedPosition == POSITION_LEFT_BOTTOM) {
             selectedPosition = 0;
         }
 
