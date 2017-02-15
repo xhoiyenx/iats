@@ -101,16 +101,45 @@ public final class ApiRequest {
         IATS.getInstance().addToRequestQueue(request);
     }
 
+    public static void SendRequest(final String url, final Listener<JSONObject> listener) {
+
+        JsonObjectRequest request = new JsonObjectRequest(url, null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                listener.onResponse(response);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                String errorMessage = getErrorMessage(error);
+                listener.onErrorResponse(errorMessage);
+            }
+        }) {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> headers = new HashMap<>();
+                headers.put("Authorization", "Bearer ".concat(Prefs.getString("token", "")));
+                return headers;
+            }
+        };
+
+        IATS.getInstance().addToRequestQueue(request);
+
+    }
+
     private static String getErrorMessage(VolleyError error) {
-        NetworkResponse response = error.networkResponse;
-        String json = new String(response.data);
+        /*
         try{
+            NetworkResponse response = error.networkResponse;
+            String json = new String(response.data);
             JSONObject obj = new JSONObject(json);
             return obj.getString("error");
         } catch(JSONException e){
             e.printStackTrace();
             return null;
         }
+        */
+        return "";
     }
 
     /**

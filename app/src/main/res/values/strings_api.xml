@@ -2,5 +2,14 @@
 <resources>
     <string name="api_login">http://api.indonesiatrimmer.com/user/login</string>
     <string name="api_register">http://api.indonesiatrimmer.com/user/register</string>
+    <string name="api_post">http://api.indonesiatrimmer.com/post</string>
     <string name="api_share_post">http://api.indonesiatrimmer.com/post/post</string>
+    <string name="api_search">http://api.indonesiatrimmer.com/search/</string>
+
+    <string name="api_post_like">http://api.indonesiatrimmer.com/post/like/</string>
+    <string name="api_comments">http://api.indonesiatrimmer.com/post/comments/</string>
+    <string name="api_send_comment">http://api.indonesiatrimmer.com/post/comments/send</string>
+    <string name="api_caption_detail">http://api.indonesiatrimmer.com/post/comments/detail/</string>
+
+
 </resources>

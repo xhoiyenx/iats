@@ -41,7 +41,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:text="@string/dummy_message"
+            android:text="@string/dummy_username"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/comment_text"
@@ -57,9 +57,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/date_text"
-            android:textAlignment="textEnd"
+            android:textAlignment="viewEnd"
             android:textColor="@color/black"
-            android:textStyle="normal|bold" />
+            android:textStyle="normal|bold"
+            android:textSize="10sp" />
 
     </LinearLayout>
 

@@ -12,9 +12,14 @@ import android.widget.TextView;
 
 import com.hoiyen.iats.R;
 import com.hoiyen.iats.activities.BlogCaptionActivity;
+import com.hoiyen.iats.library.ApiRequest;
 import com.hoiyen.iats.models.PostModel;
+import com.pixplicity.easyprefs.library.Prefs;
 import com.squareup.picasso.Picasso;
 
+import org.json.JSONObject;
+
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -23,12 +28,12 @@ import butterknife.ButterKnife;
 public final class FeedListAdapter extends RecyclerView.Adapter<FeedListAdapter.Holder> {
 
     private Context context;
-    private List<PostModel> posts;
+    private List<PostModel> posts = new ArrayList<>();
 
     class Holder extends RecyclerView.ViewHolder {
 
-        private TextView userText, dateText, commentText, shareText, captionText, readmoreText, likeText;
-        private ImageView imageView;
+        private TextView userText, dateText, commentText, shareText, captionText, readmoreText, likeText, locationText;
+        private ImageView imageView, avatarView;
         private RecyclerView tagList;
 
         private TagListAdapter adapter;
@@ -37,6 +42,7 @@ public final class FeedListAdapter extends RecyclerView.Adapter<FeedListAdapter.
             super(view);
 
             userText = (TextView) view.findViewById(R.id.username_text);
+            locationText = (TextView) view.findViewById(R.id.location_text);
             dateText = (TextView) view.findViewById(R.id.date_text);
             commentText = (TextView) view.findViewById(R.id.comment_text);
             shareText = (TextView) view.findViewById(R.id.share_button);
@@ -44,6 +50,7 @@ public final class FeedListAdapter extends RecyclerView.Adapter<FeedListAdapter.
             readmoreText = (TextView) view.findViewById(R.id.readmore_text);
             likeText = (TextView) view.findViewById(R.id.like_count_text);
             imageView = (ImageView) view.findViewById(R.id.image);
+            avatarView = (ImageView) view.findViewById(R.id.avatar_image);
             tagList = (RecyclerView) view.findViewById(R.id.tagList);
 
             captionText.setSelected(true);
@@ -89,13 +96,18 @@ public final class FeedListAdapter extends RecyclerView.Adapter<FeedListAdapter.
         holder.captionText.setText(post.caption);
         holder.userText.setText(post.username);
         holder.dateText.setText(post.published_at);
+        holder.locationText.setText(post.location);
+        holder.likeText.setText(String.valueOf(post.like_count));
+        holder.commentText.setText(String.valueOf(post.comments_count));
         Picasso.with(context).load(post.image).into(holder.imageView);
+        Picasso.with(context).load(post.avatar).into(holder.avatarView);
 
         // Comments listener
         holder.commentText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, BlogCaptionActivity.class);
+                intent.putExtra("post_id", post.post_id);
                 context.startActivity(intent);
             }
         });
@@ -106,7 +118,7 @@ public final class FeedListAdapter extends RecyclerView.Adapter<FeedListAdapter.
             public void onClick(View view) {
                 Intent intent = new Intent(Intent.ACTION_SEND);
                 intent.setType("text/plain");
-                intent.putExtra(Intent.EXTRA_SUBJECT, "Blog subject");
+                intent.putExtra(Intent.EXTRA_SUBJECT, "Check this out");
                 intent.putExtra(Intent.EXTRA_TEXT, "Blog content");
                 context.startActivity(Intent.createChooser(intent, "Share via"));
             }
@@ -135,6 +147,20 @@ public final class FeedListAdapter extends RecyclerView.Adapter<FeedListAdapter.
                 else {
                     ((TextView) v).setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_heart, 0, 0, 0);
                 }
+
+                // Send 1 request is enough
+                final String url = context.getString(R.string.api_post_like).concat(post.post_id);
+                ApiRequest.SendRequest(url, new ApiRequest.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+
+                    }
+
+                    @Override
+                    public void onErrorResponse(String response) {
+
+                    }
+                });
 
             }
         });

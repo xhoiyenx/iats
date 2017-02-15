@@ -7,7 +7,12 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.text.InputFilter;
+import android.text.Spanned;
+import android.text.TextWatcher;
 import android.util.Base64;
 import android.util.Log;
 import android.view.Menu;
@@ -27,13 +32,17 @@ import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.ui.PlaceAutocomplete;
 import com.google.android.gms.maps.model.LatLng;
 import com.hoiyen.iats.R;
+import com.hoiyen.iats.adapter.TagListAdapter;
 import com.hoiyen.iats.library.ApiRequest;
+import com.hoiyen.iats.models.TagModel;
 
 import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import butterknife.BindView;
@@ -59,8 +68,16 @@ public class PostShareActivity extends Activity {
     @BindView(R.id.image_view)
     ImageView image;
 
+    @BindView(R.id.tag_edit)
+    EditText tagEdit;
+
+    @BindView(R.id.tag_list)
+    RecyclerView tag_list;
+
+    private TagListAdapter adapter;
+
     // Params
-    private String place_id, place_name, place_address, place_country, place_lat, place_lng = "";
+    private String place_id, place_name, place_address, place_country, place_lat, place_lng, tags = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,11 +113,37 @@ public class PostShareActivity extends Activity {
         }
 
         findLocationListener();
+
+        adapter = new TagListAdapter(this);
+        tag_list.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+        tag_list.setAdapter(adapter);
     }
 
     @Override
     protected void onStart() {
         super.onStart();
+
+        InputFilter filter = new InputFilter() {
+            @Override
+            public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
+                if (dstart == 0 && source.toString().equals(" ")) {
+                    return "";
+                }
+
+                if (source.toString().equals(" ")) {
+                    tagEdit.setText("");
+                    adapter.putTag(dest.toString());
+                    if ("".equals(tags)) {
+                        tags = tags.concat(dest.toString());
+                    }
+                    else {
+                        tags = tags.concat(" ").concat(dest.toString());
+                    }
+                }
+                return null;
+            }
+        };
+        tagEdit.setFilters(new InputFilter[]{filter});
     }
 
     @Override
@@ -193,6 +236,7 @@ public class PostShareActivity extends Activity {
         // Post information
         param.put("caption", caption.getText().toString());
         param.put("image", getStringImage(bitmap));
+        param.put("tags", tags);
 
         if (use_watermark) {
             param.put("watermark_position", String.valueOf(watermark_position));

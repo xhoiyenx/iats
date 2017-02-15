@@ -23,7 +23,7 @@ public class LoadActivity extends Activity {
             startActivity(new Intent(this, LoginActivity.class));
         } else {
             // token available, go to blog
-            startActivity(new Intent(this, SearchActivity.class));
+            startActivity(new Intent(this, BlogActivity.class));
         }
         finish();
 

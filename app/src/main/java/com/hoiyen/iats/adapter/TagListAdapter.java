@@ -33,7 +33,11 @@ public final class TagListAdapter extends RecyclerView.Adapter<TagListAdapter.Ho
 
     public void putTag(String tag) {
         tags.add(new TagModel(tag));
-        notifyItemInserted(tags.size() + 1);
+        notifyItemInserted(tags.size());
+    }
+
+    public List<TagModel> getTags() {
+        return tags;
     }
 
     @Override

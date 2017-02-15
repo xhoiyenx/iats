@@ -21,6 +21,7 @@ import com.hoiyen.iats.activities.CartActivity;
 import com.hoiyen.iats.activities.ChatActivity;
 import com.hoiyen.iats.activities.GalleryActivity;
 import com.hoiyen.iats.activities.LoginActivity;
+import com.hoiyen.iats.activities.SearchActivity;
 import com.hoiyen.iats.activities.ShopActivity;
 import com.hoiyen.iats.activities.UpdateProfileActivity;
 import com.pixplicity.easyprefs.library.Prefs;
@@ -87,6 +88,10 @@ public class BaseActivity extends Activity implements TabLayout.OnTabSelectedLis
 
             case R.id.top_menu_cart:
                 startActivity(new Intent(this, CartActivity.class));
+                return true;
+
+            case R.id.top_menu_search:
+                startActivity(new Intent(this, SearchActivity.class));
                 return true;
 
             default:
