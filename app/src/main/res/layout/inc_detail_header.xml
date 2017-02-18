@@ -43,6 +43,7 @@
             app:layout_constraintTop_toBottomOf="@+id/logoImage">
 
             <ImageView
+                android:id="@+id/image"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:adjustViewBounds="true"
@@ -64,12 +65,14 @@
             app:layout_constraintVertical_bias="0.0">
 
             <TextView
+                android:id="@+id/brand_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/dummy_product_name"
                 android:textStyle="normal|bold" />
 
             <TextView
+                android:id="@+id/short_desc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/dummy_product_brand"

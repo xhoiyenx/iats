@@ -11,5 +11,10 @@
     <string name="api_send_comment">http://api.indonesiatrimmer.com/post/comments/send</string>
     <string name="api_caption_detail">http://api.indonesiatrimmer.com/post/comments/detail/</string>
 
-
+    <!-- PRODUCTS API -->
+    <string name="api_product_list">http://api.indonesiatrimmer.com/product/list/</string>
+    <string name="api_product_detail">http://api.indonesiatrimmer.com/product/detail/</string>
+    <string name="api_product_info">http://api.indonesiatrimmer.com/product/info?</string>
+    <string name="api_product_color">http://api.indonesiatrimmer.com/product/color?</string>
+    <string name="api_product_units">http://api.indonesiatrimmer.com/product/units?</string>
 </resources>

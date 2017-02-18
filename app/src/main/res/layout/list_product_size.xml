@@ -12,9 +12,10 @@
         android:background="@drawable/bg_size"
         android:clickable="true"
         android:focusable="true"
-        android:text="@string/dummy_product_size"
         android:textSize="10sp"
         android:id="@+id/sizeText"
         android:textAlignment="center"
-        android:textStyle="normal|bold" />
+        android:textStyle="normal|bold"
+        android:paddingTop="4dp"
+        android:paddingBottom="4dp" />
 </RelativeLayout>

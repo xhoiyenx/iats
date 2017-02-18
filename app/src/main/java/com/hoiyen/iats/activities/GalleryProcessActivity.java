@@ -20,6 +20,7 @@ import android.widget.Toolbar;
 
 import com.hoiyen.iats.BuildConfig;
 import com.hoiyen.iats.R;
+import com.hoiyen.iats.utils.ExifUtil;
 import com.hoiyen.iats.utils.FunctionHelper;
 import com.pixplicity.easyprefs.library.Prefs;
 import com.squareup.picasso.Picasso;
@@ -86,6 +87,9 @@ public class GalleryProcessActivity extends Activity implements View.OnClickList
         final File file = new File(filepath);
         if (file.exists()) {
             Bitmap bitmap = BitmapFactory.decodeFile(file.getAbsolutePath());
+
+            // Change orientation
+            bitmap = ExifUtil.rotateBitmap(file.getAbsolutePath(), bitmap);
 
             // Resize
             bitmap = FunctionHelper.resizeImage(bitmap, null);

@@ -96,6 +96,15 @@ public class BlogCaptionActivity extends Activity implements View.OnClickListene
         commentList.setAdapter(adapter);
         commentList.setLayoutManager(layout);
 
+        adapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
+            @Override
+            public void onItemRangeInserted(int positionStart, int itemCount) {
+                super.onItemRangeInserted(positionStart, itemCount);
+                int count = adapter.getItemCount();
+                commentList.scrollToPosition(count - 1);
+            }
+        });
+
         submit.setOnClickListener(this);
     }
 
@@ -117,8 +126,7 @@ public class BlogCaptionActivity extends Activity implements View.OnClickListene
     public void onClick(View v) {
         if (text.getText().toString().equals("")) {
             Toast.makeText(this, "Please insert your message", Toast.LENGTH_SHORT).show();
-        }
-        else {
+        } else {
 
             final String url = getString(R.string.api_send_comment);
             final Map<String, String> param = new HashMap<>();
@@ -136,7 +144,6 @@ public class BlogCaptionActivity extends Activity implements View.OnClickListene
                     );
                     adapter.putData(comment);
                     text.setText("");
-                    commentList.scrollToPosition(adapter.getItemCount());
                 }
 
                 @Override

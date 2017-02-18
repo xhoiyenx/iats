@@ -34,11 +34,6 @@ public class BlogActivity extends BaseActivity {
         blogList.setHasFixedSize(true);
         blogList.setAdapter(adapter);
         blogList.setLayoutManager(new LinearLayoutManager(this));
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
 
         final String url = getString(R.string.api_post);
         ApiRequest.SendRequest(url, new ApiRequest.Listener<JSONObject>() {
@@ -57,6 +52,12 @@ public class BlogActivity extends BaseActivity {
 
             }
         });
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
 
     }
 
