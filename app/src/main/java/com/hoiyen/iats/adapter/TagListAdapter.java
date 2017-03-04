@@ -21,14 +21,21 @@ public final class TagListAdapter extends RecyclerView.Adapter<TagListAdapter.Ho
 
     class Holder extends RecyclerView.ViewHolder {
         private TextView tagView;
+
         public Holder(View view) {
             super(view);
             tagView = (TextView) view.findViewById(R.id.name_text);
         }
     }
 
-    public TagListAdapter(Context context) {
+    public TagListAdapter(Context context, boolean editable) {
         this.context = context;
+        this.editable = editable;
+    }
+
+    public void putDataset(List<TagModel> tags) {
+        this.tags = tags;
+        notifyDataSetChanged();
     }
 
     public void putTag(String tag) {
@@ -47,14 +54,43 @@ public final class TagListAdapter extends RecyclerView.Adapter<TagListAdapter.Ho
     }
 
     @Override
-    public void onBindViewHolder(Holder holder, int position) {
+    public void onBindViewHolder(final Holder holder, int position) {
         final TagModel tag = tags.get(position);
         holder.tagView.setText(tag.name);
+        holder.tagView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                // remove selected tag
+                if (editable) {
+                    removeTag(holder.getAdapterPosition());
+                }
+                // show tag activity
+                else {
+                    showTag(tag);
+                }
+
+            }
+        });
     }
 
     @Override
     public int getItemCount() {
-        return tags.size();
+        if (tags != null) {
+            return tags.size();
+        }
+        return 0;
+    }
+
+    private void removeTag(int position) {
+        tags.remove(position);
+        notifyDataSetChanged();
+    }
+
+    private void showTag(TagModel tag) {
+        if (tag.id != null) {
+            // go to tag activity
+        }
     }
 
 }

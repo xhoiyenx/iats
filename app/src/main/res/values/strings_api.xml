@@ -2,6 +2,7 @@
 <resources>
     <string name="api_login">http://api.indonesiatrimmer.com/user/login</string>
     <string name="api_register">http://api.indonesiatrimmer.com/user/register</string>
+    <string name="api_online">http://api.indonesiatrimmer.com/user/online</string>
     <string name="api_post">http://api.indonesiatrimmer.com/post</string>
     <string name="api_share_post">http://api.indonesiatrimmer.com/post/post</string>
     <string name="api_search">http://api.indonesiatrimmer.com/search/</string>
@@ -17,4 +18,16 @@
     <string name="api_product_info">http://api.indonesiatrimmer.com/product/info?</string>
     <string name="api_product_color">http://api.indonesiatrimmer.com/product/color?</string>
     <string name="api_product_units">http://api.indonesiatrimmer.com/product/units?</string>
+
+    <string name="api_cart_create">http://api.indonesiatrimmer.com/cart/create</string>
+    <string name="api_cart_delete">http://api.indonesiatrimmer.com/cart/delete/</string>
+
+    <!-- MIDTRANS DATA -->
+    <string name="client_key">VT-client-CETf9Q7X6QJRH0cJ</string>
+    <string name="api_checkout">http://api.indonesiatrimmer.com/checkout</string>
+
+    <!-- CHAT -->
+    <string name="api_chat_list">http://api.indonesiatrimmer.com/chat</string>
+    <string name="api_chat_send">http://api.indonesiatrimmer.com/chat/send</string>
+
 </resources>

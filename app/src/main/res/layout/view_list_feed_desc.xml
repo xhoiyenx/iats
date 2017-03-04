@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -61,15 +62,15 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:focusableInTouchMode="true"
-            android:focusable="true"
             android:ellipsize="marquee"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
             android:marqueeRepeatLimit="marquee_forever"
-            android:scrollHorizontally="true"
             android:maxLines="1"
+            android:scrollHorizontally="true"
             android:singleLine="true"
-            android:text="@string/dummy_message"
-            android:textColor="@color/colorfontDark" />
+            android:textColor="@color/colorfontDark"
+            tools:text="@string/dummy_message" />
 
         <TextView
             android:id="@+id/readmore_text"
@@ -82,7 +83,7 @@
         <android.support.v7.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/tagList"
+            android:id="@+id/tag_list"
             android:layout_marginTop="4dp" />
 
     </LinearLayout>

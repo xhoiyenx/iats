@@ -12,7 +12,10 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.Toolbar;
 
@@ -25,6 +28,7 @@ import com.hoiyen.iats.activities.SearchActivity;
 import com.hoiyen.iats.activities.ShopActivity;
 import com.hoiyen.iats.activities.UpdateProfileActivity;
 import com.pixplicity.easyprefs.library.Prefs;
+import com.squareup.picasso.Picasso;
 
 public class BaseActivity extends Activity implements TabLayout.OnTabSelectedListener, NavigationView.OnNavigationItemSelectedListener {
 
@@ -66,6 +70,7 @@ public class BaseActivity extends Activity implements TabLayout.OnTabSelectedLis
         tabLayout.addOnTabSelectedListener(this);
 
         navigationView.setNavigationItemSelectedListener(this);
+        setupNavigationHeader(navigationView.getHeaderView(0));
     }
 
     @Override
@@ -187,6 +192,18 @@ public class BaseActivity extends Activity implements TabLayout.OnTabSelectedLis
     public void setTabPosition(final int position) {
         if (tabLayout != null) {
             tabLayout.setScrollPosition(position, 0, false);
+        }
+    }
+
+    private void setupNavigationHeader(View view) {
+        TextView username = (TextView) view.findViewById(R.id.username_text);
+        ImageView avatar = (ImageView) view.findViewById(R.id.avatar_image);
+        if (username != null) {
+            username.setText(Prefs.getString("username", ""));
+        }
+
+        if (avatar != null) {
+            Picasso.with(this).load(Prefs.getString("avatar", "")).resize(100, 100).into(avatar);
         }
     }
 }

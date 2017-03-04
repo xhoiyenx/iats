@@ -5,7 +5,7 @@ import android.util.Log;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.FirebaseInstanceIdService;
 
-import static com.google.android.gms.internal.zzs.TAG;
+import static android.content.ContentValues.TAG;
 
 public final class AppFirebaseInstanceIDService extends FirebaseInstanceIdService {
     @Override

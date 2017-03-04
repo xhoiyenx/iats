@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Layout;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -51,10 +53,11 @@ public final class FeedListAdapter extends RecyclerView.Adapter<FeedListAdapter.
             likeText = (TextView) view.findViewById(R.id.like_count_text);
             imageView = (ImageView) view.findViewById(R.id.image);
             avatarView = (ImageView) view.findViewById(R.id.avatar_image);
-            tagList = (RecyclerView) view.findViewById(R.id.tagList);
+            tagList = (RecyclerView) view.findViewById(R.id.tag_list);
 
             captionText.setSelected(true);
 
+            readmoreText.setVisibility(View.GONE);
             // Readmore listener
             readmoreText.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -66,7 +69,7 @@ public final class FeedListAdapter extends RecyclerView.Adapter<FeedListAdapter.
             });
 
             // Setup tags
-            adapter = new TagListAdapter(context);
+            adapter = new TagListAdapter(context, false);
             tagList.setHasFixedSize(true);
             tagList.setAdapter(adapter);
             tagList.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
@@ -99,8 +102,22 @@ public final class FeedListAdapter extends RecyclerView.Adapter<FeedListAdapter.
         holder.locationText.setText(post.location);
         holder.likeText.setText(String.valueOf(post.like_count));
         holder.commentText.setText(String.valueOf(post.comments_count));
+        holder.adapter.putDataset(post.tagModels);
         Picasso.with(context).load(post.image).into(holder.imageView);
         Picasso.with(context).load(post.avatar).into(holder.avatarView);
+
+        Layout l = holder.captionText.getLayout();
+        if (l != null) {
+            int lines = l.getLineCount();
+            if (lines > 0)
+                if (l.getEllipsisCount(lines-1) > 0)
+                    holder.readmoreText.setVisibility(View.VISIBLE);
+        }
+
+        if (post.liked == 1) {
+            holder.likeText.setSelected(true);
+            holder.likeText.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_heart_gold, 0, 0, 0);
+        }
 
         // Comments listener
         holder.commentText.setOnClickListener(new View.OnClickListener() {
@@ -153,12 +170,14 @@ public final class FeedListAdapter extends RecyclerView.Adapter<FeedListAdapter.
                 ApiRequest.SendRequest(url, new ApiRequest.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
-
+                        if (response.has("total_likes")) {
+                            holder.likeText.setText(response.optString("total_likes"));
+                        }
                     }
 
                     @Override
                     public void onErrorResponse(String response) {
-
+                        Log.e("FOO", "Yes");
                     }
                 });
 
@@ -168,6 +187,10 @@ public final class FeedListAdapter extends RecyclerView.Adapter<FeedListAdapter.
 
     @Override
     public int getItemCount() {
-        return posts.size();
+        if (posts != null) {
+            return posts.size();
+        }
+
+        return 0;
     }
 }

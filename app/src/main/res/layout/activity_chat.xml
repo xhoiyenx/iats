@@ -15,7 +15,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/inc_toolbar"
+        android:layout_below="@+id/inc_toolbar"
+        android:layout_above="@+id/inc_input_message"
+        android:layout_marginBottom="35dp"
         android:orientation="vertical"
         android:paddingEnd="16dp"
         android:paddingStart="16dp"
@@ -26,6 +28,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
+        <ProgressBar
+            style="?android:attr/progressBarStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/loader_chat"
+            android:indeterminate="true" />
+
         <View style="@style/Divider.Light" />
 
         <android.support.v7.widget.RecyclerView
@@ -33,9 +42,17 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
+        <ProgressBar
+            style="?android:attr/progressBarStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/loader"
+            android:indeterminate="true" />
+
     </LinearLayout>
 
     <include
+        android:id="@+id/inc_input_message"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         layout="@layout/view_input_message" />

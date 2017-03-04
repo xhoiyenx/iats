@@ -58,7 +58,6 @@ public class BlogActivity extends BaseActivity {
     @Override
     protected void onStart() {
         super.onStart();
-
     }
 
     @Override

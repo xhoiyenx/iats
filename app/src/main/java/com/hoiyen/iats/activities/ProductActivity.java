@@ -22,22 +22,31 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.Toolbar;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
 import com.hoiyen.iats.BaseActivity;
 import com.hoiyen.iats.R;
 import com.hoiyen.iats.adapter.ProductGalleryListAdapter;
 import com.hoiyen.iats.adapter.ProductSizeListAdapter;
 import com.hoiyen.iats.library.ApiRequest;
+import com.hoiyen.iats.models.CartItemModel;
 import com.hoiyen.iats.models.ProductMediaModel;
 import com.hoiyen.iats.models.ProductModel;
 import com.hoiyen.iats.models.ProductUnitModel;
+import com.hoiyen.iats.utils.IATS;
+import com.hoiyen.iats.utils.PostRequest;
+import com.pixplicity.easyprefs.library.Prefs;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 public class ProductActivity extends Activity implements View.OnClickListener {
 
@@ -66,6 +75,7 @@ public class ProductActivity extends Activity implements View.OnClickListener {
     private String[] colorNameList;
     private String[] productIDList;
     private double totalSize = 0;
+    private CartItemModel cart;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,6 +105,12 @@ public class ProductActivity extends Activity implements View.OnClickListener {
             @Override
             public void onItemSelected(ProductUnitModel model) {
                 Log.d("Unit", "selected");
+
+                if (cart.unit_codes == null) {
+                    cart.unit_codes = new HashMap<>();
+                }
+                cart.unit_codes.put(model.code, model.size);
+
                 totalSize += model.size;
                 setTotal();
             }
@@ -102,6 +118,11 @@ public class ProductActivity extends Activity implements View.OnClickListener {
             @Override
             public void onItemDeselected(ProductUnitModel model) {
                 Log.d("Unit", "deselected");
+
+                if (cart.unit_codes != null) {
+                    cart.unit_codes.remove(model.code);
+                }
+
                 totalSize -= model.size;
                 setTotal();
             }
@@ -112,7 +133,7 @@ public class ProductActivity extends Activity implements View.OnClickListener {
         sizeList.setAdapter(sizeListAdapter);
         submit.setOnClickListener(ProductActivity.this);
 
-        show();
+
     }
 
     @Override
@@ -124,6 +145,12 @@ public class ProductActivity extends Activity implements View.OnClickListener {
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
+
+        // Create new cart item on access
+        cart = new CartItemModel();
+
+        // Show data
+        show();
     }
 
     @Override
@@ -174,6 +201,11 @@ public class ProductActivity extends Activity implements View.OnClickListener {
                     populateArticle(articles);
                     articleList.setOnClickListener(ProductActivity.this);
                 }
+
+                // Set available info to cart
+                cart.unit_type = product.unit_type; // save unit type
+                cart.brand = product.brand; // save brand name
+                cart.product_id = product.id; // save product id
 
                 setTotal();
             }
@@ -247,6 +279,37 @@ public class ProductActivity extends Activity implements View.OnClickListener {
                 sizeListAdapter.setUnit_type(size_type);
                 sizeListAdapter.putDataset(models);
 
+                // Assign base price
+                ProductUnitModel model = models.get(0);
+                cart.price = Integer.valueOf(model.base_price);
+
+            }
+
+            @Override
+            public void onErrorResponse(String response) {
+
+            }
+        });
+
+    }
+
+    /**
+     * Get selected product detail information
+     */
+    private void getProductDetail(String product_detail_id) {
+
+        final String url = getString(R.string.api_product_info).concat("pid=" + product_detail_id);
+        ApiRequest.SendRequest(url, new ApiRequest.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+
+                cart.code = response.optString("code");
+                cart.price = response.optInt("base");
+                cart.quantity = 1;
+
+                totalSize = 1;
+                setTotal();
+
             }
 
             @Override
@@ -271,6 +334,9 @@ public class ProductActivity extends Activity implements View.OnClickListener {
                         selectedArticle = which;
                         selectedColor = -1;
 
+                        // Save selected article name
+                        cart.article = articleNameList[selectedArticle];
+
                         // populate color
                         populateColor(articleIDList[selectedArticle]);
                     }
@@ -280,7 +346,7 @@ public class ProductActivity extends Activity implements View.OnClickListener {
             break;
 
             /**
-             * Color selected, show availables sizes. Only if product unit_type is Sqf
+             * Color selected, show availables sizes. Only if product unit_type is Sqf or Meter
              */
             case R.id.color_list: {
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -291,9 +357,18 @@ public class ProductActivity extends Activity implements View.OnClickListener {
                         selectedColor = which;
                         pid = productIDList[which];
 
-                        populateUnitSizes();
-                        resetTotal();
+                        // Save selected color name
+                        cart.color = colorNameList[selectedColor];
+                        cart.product_detail_id = pid;
 
+                        if (size_type.equals("Sqf") || size_type.equals("Meter")) {
+                            populateUnitSizes();
+                        }
+                        else {
+                            getProductDetail(pid);
+                        }
+
+                        resetTotal();
                     }
                 });
                 builder.show();
@@ -308,12 +383,82 @@ public class ProductActivity extends Activity implements View.OnClickListener {
                     Toast.makeText(this, "Please choose article & color", Toast.LENGTH_SHORT).show();
                 }
                 else {
+                    /**
+                     * if size selected, record size detail as cart item
+                     */
+                    saveCart();
 
+                    Log.e("Item", pid);
                 }
             }
             break;
 
         }
+    }
+
+    private void saveCart() {
+
+        StringBuilder codeBuilder = new StringBuilder();
+
+        int total = (int) totalSize * cart.price;
+        cart.quantity = totalSize;
+        cart.subtotal = String.valueOf(total);
+
+        // Save the cart to server
+        String url = getString(R.string.api_cart_create);
+        final Map<String, String> params = new HashMap<>();
+
+        if (cart.code == null) {
+            cart.code = "";
+        }
+
+        params.put("pid", pid);
+        params.put("quantity", String.valueOf(cart.quantity));
+        /*
+        params.put("code", cart.code);
+        params.put("article", cart.article);
+        params.put("brand", cart.brand);
+        params.put("color", cart.color);
+
+        params.put("base_price", String.valueOf(cart.price));
+        params.put("total_price", cart.subtotal);
+        params.put("unit_type", cart.unit_type);
+        */
+
+        if (cart.unit_codes != null && cart.unit_codes.size() > 0) {
+
+            for (Map.Entry<String, Double> entry : cart.unit_codes.entrySet()) {
+                if (codeBuilder.length() != 0) {
+                    codeBuilder.append(",");
+                }
+                codeBuilder.append(entry.getKey());
+            }
+
+        }
+
+        params.put("unit_codes", codeBuilder.toString());
+
+        PostRequest request = new PostRequest(url, params, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                // Success, redirect to cart
+                startActivity(new Intent(ProductActivity.this, CartActivity.class));
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e("Request", "failed");
+            }
+        }) {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> headers = new HashMap<>();
+                headers.put("Authorization", "Bearer ".concat(Prefs.getString("token", "")));
+                return headers;
+            }
+        };
+        IATS.getInstance().addToRequestQueue(request);
+
     }
 
     private void setTotal() {

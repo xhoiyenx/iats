@@ -9,6 +9,7 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.google.firebase.iid.FirebaseInstanceId;
 import com.hoiyen.iats.R;
 import com.hoiyen.iats.library.ApiRequest;
 import com.hoiyen.iats.models.UserModel;
@@ -43,6 +44,8 @@ public class RegisterActivity extends Activity {
         ButterKnife.bind(this);
 
         password.setTypeface(Typeface.SERIF);
+
+        String token = FirebaseInstanceId.getInstance().getToken();
     }
 
     @OnClick(R.id.register_button)

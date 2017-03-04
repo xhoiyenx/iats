@@ -21,6 +21,7 @@ public final class UserModel implements Serializable {
         user.usermail = json.optString("usermail");
         user.usercell = json.optString("usercell");
         user.apitoken = json.optString("api_token");
+        user.fcmtoken = json.optString("fcm_token");
         user.avatar_url = json.optString("avatar_url");
         return user;
     }

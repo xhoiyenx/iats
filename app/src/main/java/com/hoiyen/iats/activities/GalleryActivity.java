@@ -107,7 +107,6 @@ public class GalleryActivity extends Activity {
     @Override
     protected void onResume() {
         super.onResume();
-        //tabs.setScrollPosition(0, 0, false);
     }
 
     @Override
@@ -137,7 +136,7 @@ public class GalleryActivity extends Activity {
 
     private void requestImagePermission(Activity activity) {
         // We dont have permission to read storage, now we need to request the permission
-        ActivityCompat.requestPermissions(activity, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
+        ActivityCompat.requestPermissions(activity, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.CAMERA}, 1);
     }
 
     /*

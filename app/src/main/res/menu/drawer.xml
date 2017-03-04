@@ -11,10 +11,6 @@
             android:orderInCategory="1"
             android:title="@string/menu_change_password" />
         <item
-            android:icon="@drawable/ic_credit_card_white"
-            android:orderInCategory="2"
-            android:title="@string/menu_payment_method" />
-        <item
             android:icon="@drawable/ic_history_white"
             android:orderInCategory="3"
             android:title="@string/menu_history" />

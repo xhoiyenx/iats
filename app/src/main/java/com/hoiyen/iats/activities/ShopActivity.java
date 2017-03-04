@@ -46,30 +46,6 @@ public class ShopActivity extends BaseActivity {
 
         container = (LinearLayout) findViewById(R.id.container);
         apiUrl = getString(R.string.api_product_list);
-
-        /*
-        featuredListAdapter = new FeaturedListAdapter(this);
-        productListAdapter = new ProductListAdapter(this);
-
-        featuredList = (RecyclerView) findViewById(R.id.featuredList);
-        featuredList.setNestedScrollingEnabled(false);
-        featuredList.setHasFixedSize(true);
-        featuredList.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
-        featuredList.setAdapter(featuredListAdapter);
-
-        materialList = (RecyclerView) findViewById(R.id.materialList);
-        materialList.setNestedScrollingEnabled(false);
-        materialList.setHasFixedSize(true);
-        materialList.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
-        materialList.setAdapter(productListAdapter);
-
-        merchandiseList = (RecyclerView) findViewById(R.id.merchandiseList);
-        merchandiseList.setNestedScrollingEnabled(false);
-        merchandiseList.setHasFixedSize(true);
-        merchandiseList.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
-        merchandiseList.setAdapter(productListAdapter);
-        */
-
         showFeatured();
     }
 

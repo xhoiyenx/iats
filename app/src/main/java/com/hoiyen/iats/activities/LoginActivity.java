@@ -9,6 +9,7 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.google.firebase.iid.FirebaseInstanceId;
 import com.hoiyen.iats.R;
 import com.hoiyen.iats.library.ApiRequest;
 import com.hoiyen.iats.models.UserModel;
@@ -41,6 +42,7 @@ public class LoginActivity extends Activity {
     @OnClick(R.id.login_button)
     public void doLogin(final View view) {
 
+        String fcm_token = FirebaseInstanceId.getInstance().getToken();
         boolean error = false;
 
         if (username.getText().toString().equals("") || password.getText().toString().equals("")) {
@@ -54,7 +56,7 @@ public class LoginActivity extends Activity {
             view.setVisibility(View.GONE);
             loader.setVisibility(View.VISIBLE);
 
-            ApiRequest.LoginRequest(getString(R.string.api_login), username.getText().toString(), password.getText().toString(), new ApiRequest.Listener<JSONObject>() {
+            ApiRequest.LoginRequest(getString(R.string.api_login), username.getText().toString(), password.getText().toString(), fcm_token, new ApiRequest.Listener<JSONObject>() {
                 @Override
                 public void onResponse(JSONObject response) {
                     final UserModel user = UserModel.parseJSON(response);

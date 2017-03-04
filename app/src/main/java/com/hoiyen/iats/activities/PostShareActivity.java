@@ -114,7 +114,7 @@ public class PostShareActivity extends Activity {
 
         findLocationListener();
 
-        adapter = new TagListAdapter(this);
+        adapter = new TagListAdapter(this, true);
         tag_list.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         tag_list.setAdapter(adapter);
     }

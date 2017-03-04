@@ -7,7 +7,7 @@
 
     <ImageView
         android:id="@+id/image"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_marginBottom="16dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
@@ -16,7 +16,11 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_width="140dp" />
+        android:layout_width="140dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        android:scaleType="centerCrop" />
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -27,30 +31,36 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toRightOf="@+id/image"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/view"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintVertical_bias="0.0">
 
         <TextView
+            android:id="@+id/brand_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/dummy_product_brand"
             android:textSize="12sp"
-            android:textStyle="normal|bold" />
-
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/dummy_product_brand"
-            android:textSize="12sp"
-            android:textStyle="normal|bold" />
+            android:textStyle="normal|bold"
+            tools:text="@string/dummy_product_brand" />
 
 
         <TextView
+            android:id="@+id/article_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/dummy_product_brand"
             android:textSize="12sp"
-            android:textStyle="normal|bold" />
+            android:textStyle="normal|bold"
+            tools:text="@string/dummy_product_brand" />
+
+
+        <TextView
+            android:id="@+id/color_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:textStyle="normal|bold"
+            tools:text="@string/dummy_product_brand" />
 
     </LinearLayout>
 
@@ -64,7 +74,6 @@
         android:background="@drawable/bg_size"
         android:clickable="true"
         android:focusable="true"
-        android:text="@string/dummy_product_price"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="12sp"
@@ -72,7 +81,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toRightOf="@+id/image"
-        app:layout_constraintRight_toRightOf="parent" />
+        app:layout_constraintRight_toRightOf="parent"
+        tools:text="@string/dummy_product_price" />
 
     <TextView
         android:id="@+id/cart_delete_item"
@@ -81,6 +91,8 @@
         android:layout_marginBottom="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginTop="16dp"
+        android:clickable="true"
+        android:focusable="true"
         android:drawableStart="@drawable/ic_trash"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -96,6 +108,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/image"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="1.0"
+        android:id="@+id/view" />
 
 </android.support.constraint.ConstraintLayout>

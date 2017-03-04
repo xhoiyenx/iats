@@ -39,6 +39,8 @@ public final class ProductListAdapter extends RecyclerView.Adapter<ProductListAd
             descText = (TextView) view.findViewById(R.id.short_desc);
             imageView = (ImageView) view.findViewById(R.id.image);
             container = (CardView) view.findViewById(R.id.container);
+
+            descText.setSelected(true);
         }
     }
 

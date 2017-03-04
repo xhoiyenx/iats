@@ -2,11 +2,17 @@ package com.hoiyen.iats.library;
 
 import android.net.Uri;
 import android.util.ArrayMap;
+import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.NetworkError;
 import com.android.volley.NetworkResponse;
+import com.android.volley.NoConnectionError;
+import com.android.volley.ParseError;
 import com.android.volley.Response;
+import com.android.volley.ServerError;
+import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.hoiyen.iats.utils.IATS;
@@ -24,12 +30,13 @@ public final class ApiRequest {
     /**
      * Login request
      */
-    public static void LoginRequest(final String url, final String username, final String password, final Listener<JSONObject> listener) {
+    public static void LoginRequest(final String url, final String username, final String password, final String fcm_token, final Listener<JSONObject> listener) {
 
         Uri builder = Uri.parse(url)
                 .buildUpon()
                 .appendQueryParameter("username", username)
                 .appendQueryParameter("password", password)
+                .appendQueryParameter("fcm_token", fcm_token)
                 .build();
 
         JsonObjectRequest request = new JsonObjectRequest(builder.toString(), null, new Response.Listener<JSONObject>() {
@@ -67,6 +74,24 @@ public final class ApiRequest {
         });
 
         IATS.getInstance().addToRequestQueue(request);
+    }
+
+    /**
+     * Request member details
+     */
+    public static void ProfileRequest(final Listener<JSONObject> listener) {
+        String url = "http://api.indonesiatrimmer.com/user/profile";
+        SendRequest(url, new Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                listener.onResponse(response);
+            }
+
+            @Override
+            public void onErrorResponse(String response) {
+                listener.onErrorResponse(response);
+            }
+        });
     }
 
     /**
@@ -128,18 +153,37 @@ public final class ApiRequest {
     }
 
     private static String getErrorMessage(VolleyError error) {
-        /*
-        try{
-            NetworkResponse response = error.networkResponse;
-            String json = new String(response.data);
-            JSONObject obj = new JSONObject(json);
-            return obj.getString("error");
-        } catch(JSONException e){
-            e.printStackTrace();
-            return null;
+
+        final NetworkResponse response = error.networkResponse;
+
+        if (error instanceof TimeoutError || error instanceof NoConnectionError) {
+
+
+        } else if (error instanceof AuthFailureError) {
+
+            if (response != null) {
+                String json = new String(response.data);
+                try {
+                    JSONObject data = new JSONObject(json);
+                    if (data.has("error")) {
+                        return data.optString("error");
+                    }
+                }
+                catch (JSONException ex) {
+
+                }
+            }
+
+        } else if (error instanceof ServerError) {
+            //TODO
+        } else if (error instanceof NetworkError) {
+            //TODO
+        } else if (error instanceof ParseError) {
+            //TODO
         }
-        */
-        return "";
+
+        return error.getMessage();
+
     }
 
     /**
