@@ -2,32 +2,38 @@ package com.hoiyen.iats.utils;
 
 import android.app.Notification;
 import android.app.NotificationManager;
-import android.support.v7.app.NotificationCompat;
+import android.app.PendingIntent;
+import android.content.Context;
+import android.content.Intent;
+import android.media.RingtoneManager;
+import android.net.Uri;
+import android.support.v4.app.NotificationCompat;
+import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 import com.hoiyen.iats.R;
+import com.hoiyen.iats.activities.ChatActivity;
 
-
-import static android.content.ContentValues.TAG;
 
 public class AppFirebaseMessagingService extends FirebaseMessagingService {
+
+    public static final String TAG = "FCM";
+
     @Override
-    public void onMessageReceived(RemoteMessage remoteMessage) {
-        // TODO(developer): Handle FCM messages here.
-        // If the application is in the foreground handle both data and notification messages here.
-        // Also if you intend on generating your own notifications as a result of a received FCM
-        // message, here is where that should be initiated. See sendNotification method below.
-        sendNotification(remoteMessage);
+    public void onMessageReceived(RemoteMessage message) {
+
+        String notificationSource = message.getData().get("source");
+        if (notificationSource != null) {
+            switch (notificationSource) {
+                case "chat": {
+                    Intent intent = new Intent("update-chat");
+                    intent.putExtra("model", message.getData().get("model"));
+                    LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
+                }
+            }
+        }
     }
 
-    private void sendNotification(RemoteMessage remoteMessage) {
-        Notification.Builder builder = new Notification.Builder(this);
-        builder.setSmallIcon(R.mipmap.ic_logo);
-        builder.setContentText(remoteMessage.getNotification().getBody());
-        builder.setPriority(Notification.PRIORITY_HIGH);
-        NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-        notificationManager.notify(0, builder.build());
-    }
 }

@@ -1,5 +1,4 @@
 <resources>
-    <string name="apikey_google_places">AIzaSyBrLgiHdXzfKRFnmxmNmUU6Fz5ao2b_OQw</string>
 
     <string name="app_name">IATS</string>
     <string name="text_login">Log In</string>
@@ -13,18 +12,12 @@
     <string name="text_agree">I agree to the AD/ART and SNIATS</string>
     <string name="text_tnc">Terms &amp; Conditions</string>
     <string name="text_adart">AD/ART</string>
-    <string name="text_sniats">SNIATS</string>
     <string name="text_open">Open</string>
     <string name="text_close">Close</string>
     <string name="text_cart">Cart</string>
     <string name="text_search">Search</string>
-    <string name="text_featured">Featured</string>
-    <string name="text_material">Material</string>
     <string name="text_description">Description</string>
-    <string name="text_article">Article</string>
-    <string name="text_color">Color</string>
     <string name="text_seemore">see more&#8230;</string>
-    <string name="text_library">Library</string>
     <string name="text_gallery">Gallery</string>
     <string name="text_photo">Photo</string>
     <string name="text_video">Video</string>
@@ -49,7 +42,6 @@
     <!-- Menu -->
     <string name="menu_my_profile">My Profile</string>
     <string name="menu_change_password">Change Password</string>
-    <string name="menu_payment_method">Payment Method</string>
     <string name="menu_history">History</string>
     <string name="menu_wishlist">Wish List</string>
     <string name="menu_order_status">Buying Status</string>
@@ -83,7 +75,6 @@
     <string name="intro_description_c">It has never been easier</string>
 
     <!-- Register -->
-    <string name="join_us">Join Us</string>
 
     <!-- Errors -->
     <string name="error_checktnc">Please confirm if you agree with Terms &amp; Conditions</string>
@@ -91,30 +82,37 @@
     <!-- Product -->
     <string name="text_confirm_delete_cart">Are you sure want to remove this item?</string>
 
+    <string name="tnc_iats">
+    Sesuai dengan hasil keputusan Dewan Pengurus Pusat pada Summit 2017, maka seluruh member IATS® sepakat untuk melakukan Standarisasi Nasional (SNIATS) dalam hal kualitas pengerjaan dan penggunaan bahan baku pendukung\n\n
+    Seluruh member IATS® wajib melakukan penyeragaman SNIATS paling lambat dalam kurun waktu 6 (enam) bulan sejak Summit 2017 berlangsung\n\n
+    Seluruh member IATS® wajib memberikan Garansi Nasional untuk pengerjaan selama 1 (satu) Tahun
+    </string>
+
+    <string name="tnc_adart">
+    Indonesia Authorized Trimmer Summit (IATS®) merupakan asosiasi pengrajin interior mobil (Trimmer) pertama &amp; terbesar di Indonesia yang diakui secara Sah dan berbadan Hukum melalui KEPUTUSAN MENTERI HUKUM DAN HAK ASASI MANUSIA REPUBLIK INDONESIA NOMOR AHU-0003005.AH.01.07.TAHUN 2017\n\nIATS didirikan oleh Oscar Widjaja yang merangkap sebagai Ketua Umum IATS dan telah menunjuk 6 orang Dewan Pengurus Pusat yang terdiri dari Profesional &amp; Trimmer terbaik di Indonesia\n\n
+Kekuasaan tertinggi berada di keputusan Rapat Anggota &amp; Rapat Kerja Nasional (Summit 2017) yang dipimpin oleh Jajaran Dewan Pengurus Pusat IATS dan diikuti oleh seluruh member IATS yang merupakan Trimmer terbaik di Indonesia\n\n
+        Seluruh memberi IATS® wajib melakukan iuran bulanan yang telah disepakati dalam Summit 2017
+\n\n
+Member resmi IATS® adalah yang mengindahkan, menjunjung tinggi dan melaksanakan seluruh keputusan Summit 2017 dan diakui oleh Dewan Pengurus Pusat yang ditandai dengan adanya Kartu Tanda Anggota IATS serta tercantum dalam website resmi www.indonesiatrimmer.com/memberlist
+\n\n
+Nama &amp; segala bentuk support serta benefit dari Associate Parter dalam bentuk apapun sifatnya merupakan CONFIDENTIAL (RAHASIA dan TERTUTUP). Tidak dapat disebar-luaskan kepada pihak manapun tanpa sepengetahuan Pengurus Pusat.
+\n\n
+Seluruh benefit dari IATS® hanya dapat dinikmati oleh Member resmi
+\n\n
+Segala bentuk kerjasama dengan pihak external, dalam bentuk benefit, dukungan, dll harus malalui pengetahuan dan persetujuan Dewan Pengurus Pusat dan melalui prosedur resmi IATS®
+\n\n
+Untuk menjadi member ataupun ingin melakukan kerjasama dengan IATS silahkan hubungi Hotline IATS di 021-30055169.
+    </string>
+
     <!-- Dummy -->
     <string name="dummy_tnc">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?
     </string>
     <string name="dummy_username">Official.IATS</string>
     <string name="dummy_message">consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. onsectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</string>
-    <string name="dummy_tags">#cars #leather #seat</string>
     <string name="dummy_product_name">Wollsdorf</string>
     <string name="dummy_product_brand">-Alcantara</string>
     <string name="dummy_product_price">Rp 99.999.000,-</string>
-    <string name="dummy_product_size">51.25 sqf</string>
     <string name="dummy_location">Alterpro Automotive</string>
     <string name="dummy_date">01 Jan 2017</string>
-    <string-array name="dummy_article">
-        <item>Alpine</item>
-        <item>Atlantic</item>
-        <item>Euroglazed</item>
-        <item>Finesse</item>
-        <item>Genoa</item>
-        <item>Mammut</item>
-        <item>Oslo</item>
-        <item>Paloma</item>
-        <item>Prima</item>
-        <item>Pull Up</item>
-        <item>Sattel</item>
-    </string-array>
 </resources>

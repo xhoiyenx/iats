@@ -6,6 +6,5 @@
     <dimen name="icon_padding">8dp</dimen>
     <dimen name="card_radius">8dp</dimen>
     <dimen name="card_list_horiontal_margin">6dp</dimen>
-    <dimen name="radius">18dp</dimen>
     <dimen name="feed_padding">16dp</dimen>
 </resources>

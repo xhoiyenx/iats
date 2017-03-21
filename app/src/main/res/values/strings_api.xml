@@ -5,10 +5,8 @@
     <string name="api_online">http://api.indonesiatrimmer.com/user/online</string>
     <string name="api_post">http://api.indonesiatrimmer.com/post</string>
     <string name="api_share_post">http://api.indonesiatrimmer.com/post/post</string>
-    <string name="api_search">http://api.indonesiatrimmer.com/search/</string>
 
     <string name="api_post_like">http://api.indonesiatrimmer.com/post/like/</string>
-    <string name="api_comments">http://api.indonesiatrimmer.com/post/comments/</string>
     <string name="api_send_comment">http://api.indonesiatrimmer.com/post/comments/send</string>
     <string name="api_caption_detail">http://api.indonesiatrimmer.com/post/comments/detail/</string>
 
@@ -23,7 +21,7 @@
     <string name="api_cart_delete">http://api.indonesiatrimmer.com/cart/delete/</string>
 
     <!-- MIDTRANS DATA -->
-    <string name="client_key">VT-client-CETf9Q7X6QJRH0cJ</string>
+    <string name="client_key">VT-client-hwVsO1-vkxYaKdoN</string>
     <string name="api_checkout">http://api.indonesiatrimmer.com/checkout</string>
 
     <!-- CHAT -->

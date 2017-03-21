@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.hoiyen.iats.activities.BlogActivity;
+import com.hoiyen.iats.activities.ChatActivity;
 import com.hoiyen.iats.activities.LoginActivity;
 import com.hoiyen.iats.activities.PostShareActivity;
 import com.hoiyen.iats.activities.SearchActivity;
@@ -16,9 +17,17 @@ import org.json.JSONObject;
 
 public class LoadActivity extends Activity {
 
+    String notificationSource;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        Intent intent = getIntent();
+        Bundle bundle = intent.getExtras();
+        if (bundle != null) {
+            notificationSource = bundle.getString("source");
+        }
 
         // Check if token available
         final String token = Prefs.getString("token", "");
@@ -38,7 +47,14 @@ public class LoadActivity extends Activity {
                     Prefs.putString("usercell", user.usercell);
                     Prefs.putString("avatar", user.avatar_url);
 
-                    startActivity(new Intent(LoadActivity.this, BlogActivity.class));
+                    if (notificationSource != null) {
+                        if (notificationSource.equals("chat")) {
+                            startActivity(new Intent(LoadActivity.this, ChatActivity.class));
+                        }
+                    }
+                    else {
+                        startActivity(new Intent(LoadActivity.this, BlogActivity.class));
+                    }
                 }
 
                 @Override

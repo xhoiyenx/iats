@@ -25,14 +25,6 @@ import java.util.List;
 
 public class ShopActivity extends BaseActivity {
 
-    /*
-    private RecyclerView featuredList;
-    private RecyclerView materialList;
-    private RecyclerView merchandiseList;
-    private FeaturedListAdapter featuredListAdapter;
-    private ProductListAdapter productListAdapter;
-    */
-
     private final String TAG = "Shop";
     private LinearLayout container;
     private String apiUrl;
@@ -82,7 +74,7 @@ public class ShopActivity extends BaseActivity {
 
             @Override
             public void onErrorResponse(String response) {
-
+                Log.e(TAG, "Error");
             }
         });
     }

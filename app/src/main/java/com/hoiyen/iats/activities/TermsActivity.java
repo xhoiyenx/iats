@@ -29,13 +29,18 @@ public class TermsActivity extends Activity {
         ButterKnife.bind(this);
 
         // On load, set contents of tnc
-        tnc_text.setText(getString(R.string.dummy_tnc));
+        tnc_text.setText(R.string.tnc_adart);
 
         // Tab listener
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
-                tnc_text.setText(getString(R.string.dummy_tnc));
+                if (tab.getPosition() == 1) {
+                    tnc_text.setText(R.string.tnc_iats);
+                }
+                else {
+                    tnc_text.setText(getString(R.string.dummy_tnc));
+                }
             }
 
             @Override

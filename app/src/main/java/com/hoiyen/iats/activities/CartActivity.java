@@ -144,9 +144,11 @@ public class CartActivity extends Activity implements View.OnClickListener {
 
     private void createTransaction() {
 
+        /*
         UserDetail userDetail = new UserDetail();
         userDetail.setEmail(Prefs.getString("usermail", ""));
         LocalDataHandler.saveObject("user_details", userDetail);
+        */
 
         // Init transaction request
         final TransactionRequest request = new TransactionRequest(invoice, amount);

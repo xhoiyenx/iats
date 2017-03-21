@@ -29,14 +29,16 @@
         app:layout_constraintTop_toBottomOf="@+id/name_text">
 
         <android.support.design.widget.TabItem
+            android:id="@+id/tnc_adart"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/text_adart" />
 
         <android.support.design.widget.TabItem
+            android:id="@+id/tnc_iats"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/app_name" />
+            android:text="SNIATS" />
 
     </android.support.design.widget.TabLayout>
 

@@ -42,6 +42,7 @@ import com.squareup.picasso.Picasso;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -58,7 +59,7 @@ public class ProductActivity extends Activity implements View.OnClickListener {
     private ActionBar actionBar;
     private ProgressBar loader;
     private NestedScrollView container;
-    private TextView brandText, shortDesc, descriptionText, articleList, colorList, totalAmount;
+    private TextView brandText, shortDesc, descriptionText, articleList, colorList, totalAmount, totalPrice;
     private ImageView mainImage;
     private Button submit;
 
@@ -75,6 +76,7 @@ public class ProductActivity extends Activity implements View.OnClickListener {
     private String[] colorNameList;
     private String[] productIDList;
     private double totalSize = 0;
+    private double subtotal = 0;
     private CartItemModel cart;
 
     @Override
@@ -94,6 +96,7 @@ public class ProductActivity extends Activity implements View.OnClickListener {
         articleList = (TextView) findViewById(R.id.article_list);
         colorList = (TextView) findViewById(R.id.color_list);
         totalAmount = (TextView) findViewById(R.id.total_amount);
+        totalPrice = (TextView) findViewById(R.id.total_price);
         submit = (Button) findViewById(R.id.cart_button);
 
         galleryListAdapter = new ProductGalleryListAdapter(this);
@@ -112,6 +115,7 @@ public class ProductActivity extends Activity implements View.OnClickListener {
                 cart.unit_codes.put(model.code, model.size);
 
                 totalSize += model.size;
+                subtotal += Double.valueOf(model.price);
                 setTotal();
             }
 
@@ -124,6 +128,7 @@ public class ProductActivity extends Activity implements View.OnClickListener {
                 }
 
                 totalSize -= model.size;
+                subtotal -= Double.valueOf(model.price);
                 setTotal();
             }
         });
@@ -414,16 +419,6 @@ public class ProductActivity extends Activity implements View.OnClickListener {
 
         params.put("pid", pid);
         params.put("quantity", String.valueOf(cart.quantity));
-        /*
-        params.put("code", cart.code);
-        params.put("article", cart.article);
-        params.put("brand", cart.brand);
-        params.put("color", cart.color);
-
-        params.put("base_price", String.valueOf(cart.price));
-        params.put("total_price", cart.subtotal);
-        params.put("unit_type", cart.unit_type);
-        */
 
         if (cart.unit_codes != null && cart.unit_codes.size() > 0) {
 
@@ -463,10 +458,15 @@ public class ProductActivity extends Activity implements View.OnClickListener {
 
     private void setTotal() {
         totalAmount.setText(String.format(Locale.US, "%.2f", totalSize).concat(" " + size_type));
+        String price = new DecimalFormat("##,###").format(subtotal);
+        price = price.replace(",", ".");
+        price = "Rp. ".concat(price).concat(",-");
+        totalPrice.setText(price);
     }
 
     private void resetTotal() {
         totalSize = 0;
+        subtotal = 0;
         setTotal();
     }
 }

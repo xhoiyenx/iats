@@ -2,10 +2,15 @@ package com.hoiyen.iats.activities;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
@@ -14,14 +19,17 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 import android.widget.Toolbar;
 
+import com.google.firebase.messaging.RemoteMessage;
 import com.hoiyen.iats.R;
 import com.hoiyen.iats.adapter.ChatListAdapter;
 import com.hoiyen.iats.adapter.MemberOnlineListAdapter;
 import com.hoiyen.iats.library.ApiRequest;
 import com.hoiyen.iats.models.ChatModel;
 import com.hoiyen.iats.models.UserModel;
+import com.hoiyen.iats.utils.AppFirebaseMessagingService;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -108,6 +116,12 @@ public class ChatActivity extends Activity implements View.OnClickListener {
     }
 
     @Override
+    protected void onResume() {
+        LocalBroadcastManager.getInstance(this).registerReceiver(broadcastReceiver, new IntentFilter("update-chat"));
+        super.onResume();
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
             startActivity(new Intent(this, BlogActivity.class));
@@ -135,6 +149,7 @@ public class ChatActivity extends Activity implements View.OnClickListener {
 
     }
 
+
     private void initView() {
         // Setup member recycler view
         onlineMemberList.setHasFixedSize(true);
@@ -157,7 +172,6 @@ public class ChatActivity extends Activity implements View.OnClickListener {
     }
 
     private void sendMessage() {
-
         final String url = getString(R.string.api_chat_send);
         Map<String, String> params = new HashMap<>();
         params.put("message", text.getText().toString());
@@ -166,6 +180,7 @@ public class ChatActivity extends Activity implements View.OnClickListener {
             public void onResponse(JSONObject response) {
                 ChatModel model = ChatModel.parseJSON(response);
                 chat_adapter.putData(model);
+                text.setText("");
             }
 
             @Override
@@ -192,4 +207,25 @@ public class ChatActivity extends Activity implements View.OnClickListener {
             }
         });
     }
+
+    private BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String chat = intent.getStringExtra("model");
+            JSONObject chatModel = null;
+
+            try {
+                chatModel = new JSONObject(chat);
+            }
+            catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            if (chatModel != null) {
+                ChatModel model = ChatModel.parseJSON(chatModel);
+                model.type = 0;
+                chat_adapter.putData(model);
+            }
+        }
+    };
 }
