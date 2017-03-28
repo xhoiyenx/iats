@@ -103,7 +103,7 @@ public final class FeedListAdapter extends RecyclerView.Adapter<FeedListAdapter.
         holder.likeText.setText(String.valueOf(post.like_count));
         holder.commentText.setText(String.valueOf(post.comments_count));
         holder.adapter.putDataset(post.tagModels);
-        Picasso.with(context).load(post.image).into(holder.imageView);
+        Picasso.with(context).load(post.image).placeholder(R.drawable.placeholder).into(holder.imageView);
         Picasso.with(context).load(post.avatar).into(holder.avatarView);
 
         Layout l = holder.captionText.getLayout();

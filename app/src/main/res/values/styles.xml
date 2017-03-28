@@ -37,12 +37,15 @@
 
     <style name="IATSTheme.AppBarLayout.Toolbar" parent="android:Widget.Material.Toolbar">
         <item name="android:actionMenuTextAppearance">@style/IATSTheme.AppBarLayout.Toolbar.TextAppearance</item>
+        <item name="android:textColorPrimary">@color/gold</item>
     </style>
 
     <style name="IATSTheme.AppBarLayout.Toolbar.TextAppearance" parent="android:TextAppearance.Material">
         <item name="android:textAllCaps">false</item>
         <item name="android:textStyle">bold</item>
         <item name="android:layout_gravity">center_vertical</item>
+        <item name="android:textColorPrimary">@color/gold</item>
+        <item name="android:textColor">@color/gold</item>
     </style>
 
     <style name="IATSTheme.TextAppearance">

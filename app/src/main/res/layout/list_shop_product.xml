@@ -31,7 +31,7 @@
                 android:contentDescription="@string/dummy_username"
                 android:cropToPadding="true"
                 android:scaleType="centerCrop"
-                android:src="@drawable/dummy_001" />
+                android:src="@drawable/placeholder" />
 
         </android.support.v7.widget.CardView>
 

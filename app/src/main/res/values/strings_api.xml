@@ -21,7 +21,7 @@
     <string name="api_cart_delete">http://api.indonesiatrimmer.com/cart/delete/</string>
 
     <!-- MIDTRANS DATA -->
-    <string name="client_key">VT-client-hwVsO1-vkxYaKdoN</string>
+    <string name="client_key">VT-client-34f_Ddl2Y1U_9Px7</string>
     <string name="api_checkout">http://api.indonesiatrimmer.com/checkout</string>
 
     <!-- CHAT -->

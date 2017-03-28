@@ -38,12 +38,60 @@ public class ShopActivity extends BaseActivity {
 
         container = (LinearLayout) findViewById(R.id.container);
         apiUrl = getString(R.string.api_product_list);
-        showFeatured();
+
+        // Featured
+        container.addView(titleView("Featured"));
+        createList("featured");
+
+        // Premium Material
+        container.addView(titleView("Premium Material"));
+        createList("leather");
+
+        // Material
+        container.addView(titleView("Material"));
+        createList("material");
+
+        // SNIATS
+        container.addView(titleView("SNIATS"));
+        createList("sniats");
+
+        // Associate Partner
+        container.addView(titleView("Associate Partner"));
+        createList("partner");
+
+        // Merchandise
+        container.addView(titleView("Merchandise"));
+        createList("merchandise");
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
+    private void createList(String type) {
+
+        int colType = 0;
+        if (type.equals("featured"))
+            colType = 1;
+
+        final ProductListAdapter adapter = new ProductListAdapter(ShopActivity.this, colType);
+        RecyclerView list = listView();
+        list.setAdapter(adapter);
+        container.addView(list);
+
+        ApiRequest.SendRequest(apiUrl.concat(type), new ApiRequest.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                final JSONArray data = response.optJSONArray("data");
+                if (data.length() > 0) {
+                    // Process data
+                    final List<ProductModel> products = ProductModel.parseJSON(data);
+                    adapter.putDataset(products);
+                }
+            }
+
+            @Override
+            public void onErrorResponse(String response) {
+                Log.e(TAG, "Error");
+            }
+        });
+
     }
 
     private void showFeatured() {

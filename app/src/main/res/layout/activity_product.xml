@@ -74,7 +74,6 @@
                 android:id="@+id/article_list"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
                 android:layout_marginEnd="24dp"
                 android:layout_marginStart="24dp"
                 android:background="@drawable/bg_form_select"
@@ -89,7 +88,7 @@
                 android:id="@+id/color_list"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginEnd="24dp"
                 android:layout_marginStart="24dp"
                 android:background="@drawable/bg_form_select"
@@ -101,29 +100,60 @@
                 android:textSize="12sp"
                 android:visibility="gone" />
 
-            <!--
-            <Spinner
-
+            <LinearLayout
+                android:visibility="gone"
+                android:id="@+id/layout_number_picker"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
                 android:layout_marginEnd="24dp"
                 android:layout_marginStart="24dp"
-                android:background="@drawable/bg_form_select"
-                android:spinnerMode="dialog"
-                android:theme="@style/IATSTheme.Spinner" />
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal"
+                android:weightSum="3">
 
-            <Spinner
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:layout_marginEnd="24dp"
-                android:layout_marginStart="24dp"
-                android:background="@drawable/bg_form_select"
-                android:entries="@array/dummy_article"
-                android:spinnerMode="dialog"
-                android:theme="@style/IATSTheme.Spinner" />
-            -->
+                <TextView
+                    android:clickable="true"
+                    android:id="@+id/btn_sub"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_form_input"
+                    android:drawableStart="@drawable/ic_substract"
+                    android:gravity="center_vertical"
+                    android:paddingEnd="16dp"
+                    android:paddingStart="16dp"
+                    android:textColor="@color/black"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/text_quantity"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_weight="3"
+                    android:background="@drawable/bg_form_input"
+                    android:gravity="center_vertical"
+                    android:paddingEnd="16dp"
+                    android:paddingStart="16dp"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:clickable="true"
+                    android:id="@+id/btn_add"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_form_input"
+                    android:drawableStart="@drawable/ic_plus_thin"
+                    android:gravity="center_vertical"
+                    android:paddingEnd="16dp"
+                    android:paddingStart="16dp"
+                    android:textColor="@color/black"
+                    android:textSize="12sp" />
+
+            </LinearLayout>
+
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/sizeList"
@@ -145,7 +175,7 @@
                 android:paddingBottom="4dp"
                 android:paddingEnd="24dp"
                 android:paddingStart="24dp"
-                android:text="Quantity"
+                android:text="@string/text_quantity"
                 android:textStyle="normal|bold" />
 
             <TextView
@@ -173,7 +203,35 @@
                 android:paddingBottom="4dp"
                 android:paddingEnd="24dp"
                 android:paddingStart="24dp"
-                android:text="Subtotal"
+                android:text="@string/text_price"
+                android:textStyle="normal|bold" />
+
+            <TextView
+                android:id="@+id/text_price"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="4dp"
+                android:paddingEnd="24dp"
+                android:paddingStart="24dp"
+                android:textAlignment="center"
+                android:textColor="@color/buttonBorder"
+                android:textSize="24sp"
+                android:textStyle="normal|bold"
+                tools:text="Rp. 9.999.999,- / sqf" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_margin="6dp"
+                android:background="@color/colorBorderLight" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="4dp"
+                android:paddingEnd="24dp"
+                android:paddingStart="24dp"
+                android:text="@string/text_subtotal"
                 android:textStyle="normal|bold" />
 
             <TextView
@@ -189,22 +247,23 @@
                 android:textStyle="normal|bold"
                 tools:text="Rp. 9.999.999,-" />
 
-            <Button
-                android:id="@+id/cart_button"
-                style="@style/MainFormButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:layout_marginEnd="24dp"
-                android:layout_marginStart="24dp"
-                android:text="@string/text_buy_now"
-                android:textSize="18sp" />
-
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_margin="6dp"
                 android:background="@color/colorBorderLight" />
+
+            <Button
+                android:id="@+id/cart_button"
+                style="@style/MainFormButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="16dp"
+                android:layout_marginEnd="24dp"
+                android:layout_marginStart="24dp"
+                android:text="@string/text_buy_now"
+                android:textSize="18sp" />
 
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>

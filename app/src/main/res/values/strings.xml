@@ -38,6 +38,8 @@
     <string name="text_tags">Tags</string>
     <string name="text_products">Products</string>
     <string name="text_profiles">Profiles</string>
+    <string name="text_subtotal">Subtotal</string>
+    <string name="text_quantity">Quantity</string>
 
     <!-- Menu -->
     <string name="menu_my_profile">My Profile</string>
@@ -65,6 +67,7 @@
     <string name="error_empty_form">Please complete the form</string>
     <string name="error_submit_post">There\'s a problem when submitting your data, please try again</string>
     <string name="error_select_location">Please select your location</string>
+    <string name="error_item_unavailable">Selected item stock is unavailable</string>
 
     <!-- Intro -->
     <string name="intro_header_a">Connecting</string>

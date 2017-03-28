@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ripple android:color="@color/buttonBorder"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape
+            android:shape="rectangle">
+            <solid android:color="#ffffff" />
+            <corners android:radius="16dp"/>
+            <padding android:left="8dp" android:right="8dp" android:top="10dp" android:bottom="10dp" />
+        </shape>
+    </item>
+</ripple>

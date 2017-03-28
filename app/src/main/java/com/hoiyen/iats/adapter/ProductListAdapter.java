@@ -76,7 +76,7 @@ public final class ProductListAdapter extends RecyclerView.Adapter<ProductListAd
 
         if (product.media != null && product.media.size() > 0) {
             ProductMediaModel media = product.media.get(0);
-            Picasso.with(context).load(media.getThumb()).into(holder.imageView);
+            Picasso.with(context).load(media.getThumb()).placeholder(R.drawable.placeholder).into(holder.imageView);
         }
 
         holder.container.setOnClickListener(new View.OnClickListener() {

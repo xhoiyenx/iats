@@ -28,12 +28,14 @@ public class LoadActivity extends Activity {
         if (bundle != null) {
             notificationSource = bundle.getString("source");
         }
+        overridePendingTransition(0, 0);
 
         // Check if token available
         final String token = Prefs.getString("token", "");
         if ("".equals(token)) {
             // empty token, go to login activity
             startActivity(new Intent(this, LoginActivity.class));
+            finish();
         } else {
 
             // token available, load profile
@@ -55,6 +57,7 @@ public class LoadActivity extends Activity {
                     else {
                         startActivity(new Intent(LoadActivity.this, BlogActivity.class));
                     }
+                    finish();
                 }
 
                 @Override
@@ -64,7 +67,8 @@ public class LoadActivity extends Activity {
             });
 
         }
-        finish();
+
+
 
     }
 

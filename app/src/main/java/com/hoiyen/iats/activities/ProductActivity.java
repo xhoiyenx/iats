@@ -16,6 +16,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -59,9 +60,9 @@ public class ProductActivity extends Activity implements View.OnClickListener {
     private ActionBar actionBar;
     private ProgressBar loader;
     private NestedScrollView container;
-    private TextView brandText, shortDesc, descriptionText, articleList, colorList, totalAmount, totalPrice;
+    private TextView brandText, shortDesc, descriptionText, articleList, colorList, totalAmount, totalPrice, priceQty, quantity;
     private ImageView mainImage;
-    private Button submit;
+    private LinearLayout numberPicker;
 
     /*
     private List<String> articleIDList = new ArrayList<>();
@@ -77,6 +78,7 @@ public class ProductActivity extends Activity implements View.OnClickListener {
     private String[] productIDList;
     private double totalSize = 0;
     private double subtotal = 0;
+    private int baseprice = 0;
     private CartItemModel cart;
 
     @Override
@@ -97,7 +99,13 @@ public class ProductActivity extends Activity implements View.OnClickListener {
         colorList = (TextView) findViewById(R.id.color_list);
         totalAmount = (TextView) findViewById(R.id.total_amount);
         totalPrice = (TextView) findViewById(R.id.total_price);
-        submit = (Button) findViewById(R.id.cart_button);
+        quantity = (TextView) findViewById(R.id.text_quantity);
+        numberPicker = (LinearLayout) findViewById(R.id.layout_number_picker);
+        priceQty = (TextView) findViewById(R.id.text_price);
+
+        TextView btnSub = (TextView) findViewById(R.id.btn_sub);
+        TextView btnAdd = (TextView) findViewById(R.id.btn_add);
+        Button submit = (Button) findViewById(R.id.cart_button);
 
         galleryListAdapter = new ProductGalleryListAdapter(this);
         galleryList.setHasFixedSize(true);
@@ -137,8 +145,8 @@ public class ProductActivity extends Activity implements View.OnClickListener {
         sizeList.setLayoutManager(new GridLayoutManager(this, 3));
         sizeList.setAdapter(sizeListAdapter);
         submit.setOnClickListener(ProductActivity.this);
-
-
+        btnAdd.setOnClickListener(ProductActivity.this);
+        btnSub.setOnClickListener(ProductActivity.this);
     }
 
     @Override
@@ -281,13 +289,20 @@ public class ProductActivity extends Activity implements View.OnClickListener {
 
                 JSONArray data = response.optJSONArray("data");
                 final List<ProductUnitModel> models = ProductUnitModel.parseJSON(data);
-                sizeListAdapter.setUnit_type(size_type);
-                sizeListAdapter.putDataset(models);
 
-                // Assign base price
-                ProductUnitModel model = models.get(0);
-                cart.price = Integer.valueOf(model.base_price);
+                // currently stock is unavailable
+                if (models.size() == 0) {
+                    Toast.makeText(ProductActivity.this, R.string.error_item_unavailable, Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    sizeListAdapter.setUnit_type(size_type);
+                    sizeListAdapter.putDataset(models);
 
+                    // Assign base price
+                    ProductUnitModel model = models.get(0);
+                    cart.price = Integer.valueOf(model.base_price);
+                    baseprice = Integer.valueOf(model.base_price);
+                }
             }
 
             @Override
@@ -303,6 +318,9 @@ public class ProductActivity extends Activity implements View.OnClickListener {
      */
     private void getProductDetail(String product_detail_id) {
 
+        // Show number picker
+        numberPicker.setVisibility(View.VISIBLE);
+
         final String url = getString(R.string.api_product_info).concat("pid=" + product_detail_id);
         ApiRequest.SendRequest(url, new ApiRequest.Listener<JSONObject>() {
             @Override
@@ -312,6 +330,8 @@ public class ProductActivity extends Activity implements View.OnClickListener {
                 cart.price = response.optInt("base");
                 cart.quantity = 1;
 
+                subtotal = cart.price;
+                baseprice = cart.price;
                 totalSize = 1;
                 setTotal();
 
@@ -350,9 +370,7 @@ public class ProductActivity extends Activity implements View.OnClickListener {
             }
             break;
 
-            /**
-             * Color selected, show availables sizes. Only if product unit_type is Sqf or Meter
-             */
+            // Color selected, show availables sizes. Only if product unit_type is Sqf or Meter
             case R.id.color_list: {
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
                 builder.setItems(colorNameList, new DialogInterface.OnClickListener() {
@@ -366,7 +384,7 @@ public class ProductActivity extends Activity implements View.OnClickListener {
                         cart.color = colorNameList[selectedColor];
                         cart.product_detail_id = pid;
 
-                        if (size_type.equals("Sqf") || size_type.equals("Meter")) {
+                        if (size_type.equals("Sqf")) {
                             populateUnitSizes();
                         }
                         else {
@@ -380,23 +398,33 @@ public class ProductActivity extends Activity implements View.OnClickListener {
             }
             break;
 
-            /**
-             * User select buy
-             */
             case R.id.cart_button: {
                 if (pid == null || pid.equals("")) {
                     Toast.makeText(this, "Please choose article & color", Toast.LENGTH_SHORT).show();
                 }
                 else {
-                    /**
-                     * if size selected, record size detail as cart item
-                     */
+
+                    // if size selected, record size detail as cart item
                     saveCart();
 
                     Log.e("Item", pid);
                 }
             }
             break;
+
+            case R.id.btn_add:
+                totalSize += 1;
+                subtotal = totalSize * cart.price;
+                setTotal();
+                break;
+
+            case R.id.btn_sub:
+                if (totalSize > 1) {
+                    totalSize -= 1;
+                    subtotal = totalSize * cart.price;
+                    setTotal();
+                }
+                break;
 
         }
     }
@@ -406,6 +434,11 @@ public class ProductActivity extends Activity implements View.OnClickListener {
         StringBuilder codeBuilder = new StringBuilder();
 
         int total = (int) totalSize * cart.price;
+
+        if (total == 0) {
+            return;
+        }
+
         cart.quantity = totalSize;
         cart.subtotal = String.valueOf(total);
 
@@ -457,11 +490,23 @@ public class ProductActivity extends Activity implements View.OnClickListener {
     }
 
     private void setTotal() {
-        totalAmount.setText(String.format(Locale.US, "%.2f", totalSize).concat(" " + size_type));
+        if (size_type.toLowerCase().equals("sqf")) {
+            totalAmount.setText(String.format(Locale.US, "%.2f", totalSize).concat(" " + size_type));
+        }
+        else {
+            quantity.setText(String.valueOf((int) totalSize).concat(" " + size_type));
+            totalAmount.setText(String.valueOf((int) totalSize).concat(" " + size_type));
+        }
+
         String price = new DecimalFormat("##,###").format(subtotal);
         price = price.replace(",", ".");
         price = "Rp. ".concat(price).concat(",-");
         totalPrice.setText(price);
+
+        String base = new DecimalFormat("##,###").format(baseprice);
+        base = base.replace(",", ".");
+        base = "Rp. ".concat(base).concat(",-") + " / " + size_type;
+        priceQty.setText(base);
     }
 
     private void resetTotal() {
