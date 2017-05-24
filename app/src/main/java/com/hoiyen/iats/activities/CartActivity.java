@@ -14,22 +14,19 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toolbar;
 
+import com.hoiyen.iats.BuildConfig;
 import com.hoiyen.iats.R;
 import com.hoiyen.iats.adapter.CartItemListAdapter;
 import com.hoiyen.iats.library.ApiRequest;
 import com.hoiyen.iats.models.CartModel;
 import com.midtrans.sdk.corekit.callback.TransactionFinishedCallback;
-import com.midtrans.sdk.corekit.core.LocalDataHandler;
 import com.midtrans.sdk.corekit.core.MidtransSDK;
 import com.midtrans.sdk.corekit.core.TransactionRequest;
 import com.midtrans.sdk.corekit.models.BankType;
 import com.midtrans.sdk.corekit.models.ItemDetails;
-import com.midtrans.sdk.corekit.models.UserDetail;
 import com.midtrans.sdk.corekit.models.snap.CreditCard;
 import com.midtrans.sdk.corekit.models.snap.TransactionResult;
-import com.midtrans.sdk.scancard.ScanCard;
 import com.midtrans.sdk.uikit.SdkUIFlowBuilder;
-import com.pixplicity.easyprefs.library.Prefs;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -42,22 +39,17 @@ import butterknife.ButterKnife;
 
 public class CartActivity extends Activity implements View.OnClickListener {
 
+    private final static String TAG = "Cart";
     @BindView(R.id.toolbar)
     Toolbar toolbar;
-
     @BindView(R.id.cartList)
     RecyclerView cartList;
-
     @BindView(R.id.submit_button)
     Button submit;
-
     @BindView(R.id.total_amount)
     TextView totalText;
-
     @BindView(R.id.loader)
     ProgressBar loader;
-
-    private final static String TAG = "Cart";
     private CartItemListAdapter adapter;
     private String invoice;
     private double amount;
@@ -80,12 +72,12 @@ public class CartActivity extends Activity implements View.OnClickListener {
         submit.setOnClickListener(CartActivity.this);
 
         // Submit payment
-        SdkUIFlowBuilder.init(CartActivity.this, getString(R.string.client_key), getString(R.string.api_checkout), new TransactionFinishedCallback() {
+        SdkUIFlowBuilder.init(CartActivity.this, BuildConfig.CLIENT_KEY, BuildConfig.BASE_URL, new TransactionFinishedCallback() {
             @Override
             public void onTransactionFinished(TransactionResult transactionResult) {
 
             }
-        }).setExternalScanner(new ScanCard()).buildSDK();
+        }).buildSDK();
 
     }
 

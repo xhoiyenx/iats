@@ -10,6 +10,8 @@
     <string name="api_send_comment">http://api.indonesiatrimmer.com/post/comments/send</string>
     <string name="api_caption_detail">http://api.indonesiatrimmer.com/post/comments/detail/</string>
 
+    <string name="api_subscription_request">http://api.indonesiatrimmer.com/subscription/request</string>
+
     <!-- PRODUCTS API -->
     <string name="api_product_list">http://api.indonesiatrimmer.com/product/list/</string>
     <string name="api_product_detail">http://api.indonesiatrimmer.com/product/detail/</string>

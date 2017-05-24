@@ -55,6 +55,7 @@
             android:theme="@style/IATSTheme.Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -131,6 +132,9 @@
         <activity
             android:name=".activities.SubscribeActivity"
             android:screenOrientation="portrait"
+            android:theme="@style/IATSTheme" />
+        <activity
+            android:name=".activities.ImageZoomActivity"
             android:theme="@style/IATSTheme" />
     </application>
 

@@ -13,6 +13,7 @@ public final class UserModel implements Serializable {
     public String apitoken;
     public String fcmtoken;
     public String avatar_url;
+    public int subscribed;
 
     public static UserModel parseJSON(JSONObject json) {
         UserModel user = new UserModel();
@@ -23,6 +24,7 @@ public final class UserModel implements Serializable {
         user.apitoken = json.optString("api_token");
         user.fcmtoken = json.optString("fcm_token");
         user.avatar_url = json.optString("avatar_url");
+        user.subscribed = json.optInt("subscribed", 0);
         return user;
     }
 

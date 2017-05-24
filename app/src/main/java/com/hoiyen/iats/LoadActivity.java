@@ -7,8 +7,7 @@ import android.os.Bundle;
 import com.hoiyen.iats.activities.BlogActivity;
 import com.hoiyen.iats.activities.ChatActivity;
 import com.hoiyen.iats.activities.LoginActivity;
-import com.hoiyen.iats.activities.PostShareActivity;
-import com.hoiyen.iats.activities.SearchActivity;
+import com.hoiyen.iats.activities.SubscribeActivity;
 import com.hoiyen.iats.library.ApiRequest;
 import com.hoiyen.iats.models.UserModel;
 import com.pixplicity.easyprefs.library.Prefs;
@@ -49,12 +48,15 @@ public class LoadActivity extends Activity {
                     Prefs.putString("usercell", user.usercell);
                     Prefs.putString("avatar", user.avatar_url);
 
-                    if (notificationSource != null) {
-                        if (notificationSource.equals("chat")) {
-                            startActivity(new Intent(LoadActivity.this, ChatActivity.class));
-                        }
+                    if (user.subscribed == 0) {
+                        startActivity(new Intent(LoadActivity.this, SubscribeActivity.class));
+                        finish();
+                        return;
                     }
-                    else {
+
+                    if (notificationSource != null && notificationSource.equals("chat")) {
+                        startActivity(new Intent(LoadActivity.this, ChatActivity.class));
+                    } else {
                         startActivity(new Intent(LoadActivity.this, BlogActivity.class));
                     }
                     finish();
@@ -67,7 +69,6 @@ public class LoadActivity extends Activity {
             });
 
         }
-
 
 
     }

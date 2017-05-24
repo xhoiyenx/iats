@@ -40,6 +40,8 @@
     <string name="text_profiles">Profiles</string>
     <string name="text_subtotal">Subtotal</string>
     <string name="text_quantity">Quantity</string>
+    <string name="text_membership">IATS Membership</string>
+    <string name="text_pay">Pay Now</string>
 
     <!-- Menu -->
     <string name="menu_my_profile">My Profile</string>
@@ -106,6 +108,31 @@ Segala bentuk kerjasama dengan pihak external, dalam bentuk benefit, dukungan, d
 \n\n
 Untuk menjadi member ataupun ingin melakukan kerjasama dengan IATS silahkan hubungi Hotline IATS di 021-30055169.
     </string>
+
+    <string name="text_subscribe">
+        Please pay your monthly membership fee to enjoy all of our benefits\n\n
+        Membership fee INCLUDES\n
+        IATS Suspender - 1 pack (100 pcs)\n
+        IATS Warranty Tag - 1 pack (25 pcs)
+        \n\n
+        SPECIAL DISCOUNTS\n for all associate partners products\n
+        Dunlopillo\n
+        Amann Group\n
+        First Class\n
+        Azeth\n
+        Zenda\n
+        Ecoleder\n
+        and many more
+    </string>
+
+    <!--
+    Page Thank You
+
+    Thank You!
+
+    We are now processing your membership payment
+    Your account will be enabled soon
+    -->
 
     <!-- Dummy -->
     <string name="dummy_tnc">

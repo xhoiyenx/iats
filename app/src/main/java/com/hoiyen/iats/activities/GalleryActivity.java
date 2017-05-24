@@ -190,9 +190,17 @@ public class GalleryActivity extends Activity {
 
 
     public void showGallery(View view) {
+        /* OLD WAYS
         Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         intent.setType("image/* video/*");
         startActivityForResult(intent, REQUEST_GALLERY);
+        */
+
+        // NEW WAYS
+        Intent intent = new Intent();
+        intent.setType("image/* video/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(Intent.createChooser(intent, "Select Picture"), REQUEST_GALLERY);
     }
 
     public void takePhoto(View view) {
